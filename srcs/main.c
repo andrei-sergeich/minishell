@@ -10,7 +10,8 @@ char	*copy_value(char *env_part)
 		it++;
 	if (env_part[it] == '\0')
 		value = NULL;
-	value = ft_strdup(&env_part[it + 1]);
+	else
+		value = ft_strdup(&env_part[it + 1]);
 	return (value);
 }
 
