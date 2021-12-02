@@ -1,10 +1,11 @@
 NAME	=	minishell
 
-SRCS	=	${shell find ./src -name "*.c"}
+LIB_DIR	=	libft
+SRCS	=	${shell find ./srcs -name "*.c"}
 OBJS_DIR	=	obj
 OBJS	=	$(patsubst %.c,%.o,$(SRCS))
 
-HEADER	=	-I./inc/
+HEADER	=	-I./include/
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -lreadline
@@ -12,9 +13,10 @@ RM		=	rm -f
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) ./inc/minishell.h
+$(NAME):	$(OBJS) include
 			@echo "\033[33;1m----Compiling project----\033[0m"
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@make -C $(LIB_DIR)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o $(NAME)
 			@#clear
 			@echo "Let's go into bash, my Master!!!"
 
@@ -22,9 +24,11 @@ $(NAME):	$(OBJS) ./inc/minishell.h
 			@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
+			@make clean -C $(LIB_DIR)
 			$(RM) $(OBJS)
 
 fclean:		clean
+			@make fclean -C $(LIB_DIR)
 			$(RM) $(NAME)
 
 re:			fclean all
