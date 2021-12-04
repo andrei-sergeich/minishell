@@ -2,7 +2,6 @@ NAME	=	minishell
 
 LIB_DIR	=	libft
 SRCS	=	${shell find ./srcs -name "*.c"}
-OBJS_DIR	=	obj
 OBJS	=	$(patsubst %.c,%.o,$(SRCS))
 
 HEADER	=	-I./include/
@@ -14,7 +13,7 @@ RM		=	rm -f
 all:		$(NAME)
 
 $(NAME):	$(OBJS) include
-			@echo "\033[33;1m----Compiling project----\033[0m"
+			@echo "\033[0;32m----Compiling project----\033[0m"
 			@make -C $(LIB_DIR)
 			@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o $(NAME)
 			@#clear
