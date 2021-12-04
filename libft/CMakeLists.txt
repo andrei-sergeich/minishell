@@ -14,6 +14,7 @@ set(SOURCE_FILES libft.h
         ft_strcpy.c		ft_strclr.c		ft_find_max.c	ft_error.c		ft_prompt.c
         ft_atoi_only_for_num.c	ft_abs.c	ft_find_min.c	ft_iterative_power.c
         ft_recursive_power.c	ft_sqrt.c	ft_strcmp.c		ft_perror.c
+        ft_strjoin_con.c
         get_next_line.c
         ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c	ft_lstadd_back.c
         ft_lstdelone.c	ft_lstclear.c		ft_lstiter.c	ft_lstmap.c
