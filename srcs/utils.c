@@ -46,14 +46,37 @@ void	*allocator(size_t size)
 	return (ptr);
 }
 
+void	lstdelone(t_envl *lst)
+{
+	if (!lst)
+		return ;
+	free(lst->line);
+	lst->line = NULL;
+	free(lst->key);
+	lst->key = NULL;
+	free(lst->value);
+	lst->value = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	envl_destroy(t_envl **lst)
+{
+	t_envl	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
 void	liberator(t_shell *mini)
 {
-	while (mini->env_copy)
-	{
-		free(mini->env_copy->line);
-		free(mini->env_copy->key);
-		free(mini->env_copy->value);
-		mini->env_copy = mini->env_copy->next;
-	}
+	envl_destroy(&mini->env_copy);
 	free(mini);
 }

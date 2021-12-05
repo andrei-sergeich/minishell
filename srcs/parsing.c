@@ -6,6 +6,8 @@ char	*is_quote(char *str, int *it)
 	char	*tmp_1;
 	char	*tmp_2;
 	char	*tmp_3;
+	char	*tmp1;
+	char	*tmp2;
 
 	begin = *it;
 	while (str[++(*it)])
@@ -15,19 +17,17 @@ char	*is_quote(char *str, int *it)
 	}
 	tmp_1 = ft_substr(str, 0, begin);
 	tmp_2 = ft_substr(str, begin + 1, *it - begin - 1);
-//	printf("tmp2 = %s\n", tmp2);
 	tmp_3 = ft_strdup(str + *it + 1);
-//	printf("tmp3 = %s\n", tmp3);
-//	tmp = ft_strjoin(tmp, tmp2);
-//	free(tmp2);
-//	tmp2 = ft_strjoin(tmp, tmp3);
+	tmp1 = ft_strjoin(tmp_1, tmp_2);
+	tmp2 = ft_strjoin(tmp1, tmp_3);
 //	printf("tmp = %s\n", tmp);
 	free(str);
-	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
+//	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
 	free(tmp_1);
 	free(tmp_2);
 	free(tmp_3);
-	return (str);
+	free(tmp1);
+	return (tmp2);
 }
 
 char	*is_slash(char *str, int *it)
@@ -73,7 +73,7 @@ char	*is_db_quote(char *str, int *it)
 	return (str);
 }
 
-void	preparser(char *str)
+void	parser(char *str)
 {
 	int	it;
 
@@ -90,8 +90,13 @@ void	preparser(char *str)
 	}
 	printf("str = %s\n", str);
 }
+/*
+int	preparser(char *str)
+{
 
-void	parsing(t_shell *mini, t_envl *env_copy)
+}*/
+
+void	starting(t_shell *mini, t_envl *env_copy)
 {
 	(void)env_copy;
 	mini->input = NULL;
@@ -102,7 +107,8 @@ void	parsing(t_shell *mini, t_envl *env_copy)
 		exit(0);
 //	if (*mini->input)					/* If the line has any text in it, */
 //		add_history (mini->input);		/* save it on the history. */
-	preparser(mini->input);
+//	preparser(mini->input);
+	parser(mini->input);
 //	printf("%p\n", mini->input);
-//	free(mini->input);
+	free(mini->input);
 }

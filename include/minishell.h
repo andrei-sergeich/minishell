@@ -12,7 +12,7 @@
 #define BOLD		"\001\033[1m\002"			// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y)	"\001\033["#x";"#y"m\002"	// x: background, y: foreground
 
-int		g_ext_stat;
+//int		g_ext_stat;
 
 typedef struct s_shell
 {
@@ -39,7 +39,7 @@ t_envl	*envl_lstnew(char *env_str);
 char	*copy_key(char *env_part);
 char	*copy_value(char *env_part);
 
-void	parsing(t_shell *mini, t_envl *env_copy);
+void	starting(t_shell *mini, t_envl *env_copy);
 
 void	shlvl_up(t_shell *mini);
 void	shlvl_down(t_shell *mini);
