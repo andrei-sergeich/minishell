@@ -23,7 +23,7 @@ void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value)
 		{
 			if (env_copy->line)
 				free(env_copy->line);
-			env_copy->line = ft_strjoin_con(key, '=', value);
+			env_copy->line = ft_strjoin_con(key, "=", value);
 			if (env_copy->value)
 				free(env_copy->value);
 			env_copy->value = ft_strdup(value);

@@ -24,7 +24,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			@ar rcs $(NAME) $?
 			@clear
-			@echo "Library is open for you, my Master!!!"
+			@echo "\033[0;32mLibrary is open for you, my Master!!!\033[0m"
 
 %.o:		%.c $(HEADER)
 			@gcc $(CFLAGS) $(OPTFLAGS) -c $< -o $@
