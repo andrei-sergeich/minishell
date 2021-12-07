@@ -20,9 +20,10 @@ int	main(int argc, char **argv, char **envp)
 //	}
 //	while (1)
 //	{
-		starting(mini, mini->env_copy);
+		parsing(mini, mini->env_copy);
 //	}
 	liberator(mini);
+//	while (1);
 //	exit(9);
 	return (0);
 }
