@@ -84,6 +84,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strcpy(char *dst, const char *src);
 void	ft_strclr(char *s);
 char	*ft_strjoin_con(char const *s1, char *connector, char const *s2);
+char	*ft_strjoin_free(char const *s1, char const *s2);
 int		get_next_line(int fd, char **line);
 
 /*

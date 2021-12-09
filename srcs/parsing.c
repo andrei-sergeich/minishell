@@ -1,11 +1,26 @@
 #include "../include/minishell.h"
 
-char	*is_quote(char *str, int *it)
+char	*str_handler(char *str, int begin, int end)
 {
-	int		begin;
 	char	*tmp_1;
 	char	*tmp_2;
 	char	*tmp_3;
+
+	tmp_1 = ft_substr(str, 0, begin);
+	tmp_2 = ft_substr(str, begin + 1, end - begin - 1);
+	tmp_3 = ft_strdup(str + end + 1);
+	free(str);
+	str = NULL;
+	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
+	free(tmp_1);
+	free(tmp_2);
+	free(tmp_3);
+	return (str);
+}
+
+char	*is_quote(char *str, int *it)
+{
+	int		begin;
 
 	begin = *it;
 	while (str[++(*it)])
@@ -13,15 +28,7 @@ char	*is_quote(char *str, int *it)
 		if (str[*it] == '\'')
 			break ;
 	}
-	tmp_1 = ft_substr(str, 0, begin);
-	tmp_2 = ft_substr(str, begin + 1, *it - begin - 1);
-	tmp_3 = ft_strdup(str + *it + 1);
-	free(str);
-	str = NULL;
-	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
-	free(tmp_1);
-	free(tmp_2);
-	free(tmp_3);
+	str = str_handler(str, begin, *it);
 	return (str);
 }
 
@@ -44,9 +51,6 @@ char	*is_slash(char *str, int *it)
 char	*is_db_quote(char *str, int *it, t_envl *env_copy)
 {
 	int		begin;
-	char	*tmp_1;
-	char	*tmp_2;
-	char	*tmp_3;
 
 	begin = *it;
 	while (str[++(*it)])
@@ -60,15 +64,7 @@ char	*is_db_quote(char *str, int *it, t_envl *env_copy)
 		if (str[*it] == '\"')
 			break ;
 	}
-	tmp_1 = ft_substr(str, 0, begin);
-	tmp_2 = ft_substr(str, begin + 1, *it - begin - 1);
-	tmp_3 = ft_strdup(str + *it + 1);
-	free(str);
-	str = NULL;
-	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
-	free(tmp_1);
-	free(tmp_2);
-	free(tmp_3);
+	str = str_handler(str, begin, *it);
 	return (str);
 }
 
@@ -79,13 +75,33 @@ int	key_checker(char c)
 	return (0);
 }
 
-char	*dollar(char *str, int *it, t_envl *env_copy)
+char	*key_handler(char *str, int begin, int end, t_envl *env_copy)
 {
-	int		begin;
-	char	*tmp;
+	char	*key;
 	char	*tmp_1;
 	char	*tmp_2;
 	char	*tmp_3;
+
+	key = ft_substr(str, begin + 1, end - begin - 1);
+	tmp_1 = ft_substr(str, 0, begin);
+	tmp_3 = ft_strdup(str + end);
+	tmp_2 = ft_strdup(find_in_env(env_copy, key));
+	free(str);
+	str = NULL;
+	if (tmp_2 == NULL)
+		str = ft_strjoin(tmp_1, tmp_3);
+	else
+		str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
+	free(key);
+	free(tmp_1);
+	free(tmp_2);
+	free(tmp_3);
+	return (str);
+}
+
+char	*dollar(char *str, int *it, t_envl *env_copy)
+{
+	int		begin;
 
 	begin = *it;
 	while (str[++(*it)])
@@ -95,25 +111,7 @@ char	*dollar(char *str, int *it, t_envl *env_copy)
 	}
 	if (*it == begin + 1)
 		return (str);
-	tmp = ft_substr(str, begin + 1, *it - begin - 1);
-	while (env_copy)
-	{
-		if (!ft_strcmp(tmp, env_copy->key))
-			tmp_2 = ft_strdup(env_copy->value);
-		env_copy = env_copy->next;
-	}
-	tmp_1 = ft_substr(str, 0, begin);
-	printf("tmp_2 = %s\n", tmp_2);
-//	tmp_2 = ft_strdup(env_copy->value);
-	tmp_3 = ft_strdup(str + *it);
-	free(str);
-	str = NULL;
-	str = ft_strjoin_con(tmp_1, tmp_2, tmp_3);
-	free(tmp);
-	free(tmp_1);
-	free(tmp_2);
-	free(tmp_3);
-//	printf("key = %s\n", tmp);
+	str = key_handler(str, begin, *it, env_copy);
 	return (str);
 }
 

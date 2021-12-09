@@ -10,7 +10,7 @@ FT_LIST		=	ft_atoi.c		ft_bzero.c		ft_calloc.c		ft_isalnum.c	ft_isalpha.c \
 				ft_strcpy.c		ft_strclr.c		ft_find_max.c	ft_error.c		ft_prompt.c \
 				ft_atoi_only_for_num.c	ft_abs.c	ft_find_min.c	ft_iterative_power.c \
 				ft_recursive_power.c	ft_sqrt.c	ft_strcmp.c \
-				ft_strjoin_con.c \
+				ft_strjoin_con.c	ft_strjoin_free.c\
 				get_next_line.c
 
 OBJS		=	$(patsubst %.c,%.o,$(FT_LIST))
