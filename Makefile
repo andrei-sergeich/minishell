@@ -7,10 +7,10 @@ OBJS		=	$(patsubst %.c,%.o,$(SRCS))
 HEADER		=	-I./include/
 
 CC			=	gcc
-#CFLAGS		=	-Wall -Wextra -Werror -lreadline
-CFLAGS		=	-Wall -Wextra -Werror -I ~/.brew/opt/readline/include/
-RDL_LIN		= 	-lreadline
-RDL_MAC		= 	-lreadline -L ~/.brew/opt/readline/lib
+CFLAGS		=	-Wall -Wextra -Werror
+#CFLAGS		=	-Wall -Wextra -Werror -I ~/.brew/opt/readline/include/
+RDL			= 	-lreadline
+#RDL			= 	-lreadline -L ~/.brew/opt/readline/lib
 RM			=	rm -f
 
 all:		$(NAME)
@@ -18,7 +18,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS) include
 			@echo "\033[0;32m----Compiling project----\033[0m"
 			@make -C $(LIB_DIR)
-			@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o $(NAME) $(RDL_MAC)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o $(NAME) $(RDL)
 			@#clear
 			@echo "\033[0;32mLet's go into bash, my Master!!!\033[0m"
 

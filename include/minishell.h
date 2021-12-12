@@ -22,7 +22,7 @@ typedef struct s_shell
 
 typedef struct s_envl
 {
-	char			*line;
+	char			*line; // maybe delete
 	char			*key;
 	char			*value;
 	struct s_envl	*next;
@@ -32,6 +32,7 @@ char	*find_in_env(t_envl *env_copy, char *key);
 void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value);
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
+int		print_msg(int ret_val, char *message);
 
 t_envl	*copying_envp(char **envp);
 void	envl_lstadd_back(t_envl	**list, t_envl *new);
@@ -40,7 +41,9 @@ char	*copy_key(char *env_part);
 char	*copy_value(char *env_part);
 
 void	parsing(t_shell *mini, t_envl *env_copy);
-char	*dollar(char *str, int *it, t_envl *env_copy);
+int		validator(char *input);
+//char	*pass_whitespaces(char *input);
+char	*is_dollar(char *input, int *it, t_envl *env_copy);
 
 void	shlvl_up(t_shell *mini);
 void	shlvl_down(t_shell *mini);
