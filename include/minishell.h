@@ -47,6 +47,7 @@ char	*copy_value(char *env_part);
 
 void	parsing(t_shell *mini, t_envl *env_copy);
 int		validator(char *input);
+int		counting_redirect(char *input, int *it, char redirect);
 //char	*pass_whitespaces(char *input);
 char	*is_dollar(char *input, int *it, t_envl *env_copy);
 

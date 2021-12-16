@@ -1,5 +1,12 @@
 #include "../include/minishell.h"
 
+int	pass_whitespaces(char *input, int it)
+{
+	while (input[it] && (ft_strchr("\t", input[it]) || ft_strchr(" ", input[it])))
+		it++;
+	return (it);
+}
+
 int	opener(char *path, char flag)
 {
 	int	fd;
