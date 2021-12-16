@@ -40,15 +40,43 @@ int	counting_quotes(char *input, int *it, char quote)
 
 int	read_redirect(char *input, int *it)
 {
-	if (input[*it] == '1')
-		return (1);
-	if (input[*it] == '0')
-		return (0);
+	(*it)++;
+	if (input[*it] == '\0' || input[*it] == '>')
+		return (print_msg(1, "syntax error near unexpected token `newline'"));
+	if (input[*it] == '|')
+		return (print_msg(1, "syntax error near unexpected token `|'"));
+	if (input[*it] == '<')
+	{
+		*it = pass_whitespaces(input, *it + 1);
+		if (input[*it] == '\0')
+			return (print_msg(1, \
+						"syntax error near unexpected token `newline'"));
+		if (input[*it] == '|')
+			return (print_msg(1, "syntax error near unexpected token `|'"));
+		if (input[*it] == '>')
+			return (print_msg(1, "syntax error near unexpected token `>'"));
+		if (input[*it] == '<')
+			return (print_msg(1, "syntax error near unexpected token `<'"));
+	}
+	else
+	{
+		*it = pass_whitespaces(input, *it);
+		if (input[*it] == '\0')
+			return (print_msg(1,\
+						"syntax error near unexpected token `newline'"));
+		if (input[*it] == '|')
+			return (print_msg(1, "syntax error near unexpected token `|'"));
+		if (input[*it] == '>')
+			return (print_msg(1, "syntax error near unexpected token `>'"));
+		if (input[*it] == '<')
+			return (print_msg(1, "syntax error near unexpected token `<'"));
+	}
 	return (0);
 }
 
 int	write_redirect(char *input, int *it)
 {
+	(*it)++;
 	if (input[*it] == '\0' || input[*it] == '|')
 		return (print_msg(1, "syntax error near unexpected token `newline'"));
 	if (input[*it] == '<')
@@ -108,6 +136,8 @@ int	validator(char *input)
 		return (counting_pipes_or_delimeters(input, it));
 	while (input[it])
 	{
+//		if (input[it] == '|' && counting_pipes(input, &it, input[it]))
+//			return (1);
 		if (input[it] == '\'' && counting_quotes(input, &it, input[it]))
 			return (1);
 //		printf("%c\t%d\n", input[it], it);
