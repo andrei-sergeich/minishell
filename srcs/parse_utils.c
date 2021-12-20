@@ -21,7 +21,8 @@ int	opener(char *path, char flag)
 	if (fd == -1)
 	{
 		//	g_ext_stat = 258;
-		print_msg(1, strerror(errno));
+		// ret_val -1???
+		print_msg(1, strerror(errno), 258);
 	}
 	return (fd);
 }

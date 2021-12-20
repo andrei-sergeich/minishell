@@ -34,7 +34,7 @@ char	*find_in_env(t_envl *env_copy, char *key);
 void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value);
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
-int		print_msg(int ret_val, char *message);
+int	print_msg(int ret_val, char *message, int ext_stat);
 
 int		opener(char *path, char flag);
 int		find_file_name(char *input, int *it);

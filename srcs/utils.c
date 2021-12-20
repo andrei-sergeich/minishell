@@ -1,10 +1,12 @@
 #include "../include/minishell.h"
 
-int	print_msg(int ret_val, char *message)
+int	print_msg(int ret_val, char *message, int ext_stat)
 {
 	write(2, "minishell: ", 11);
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
+	(void)ext_stat;
+//	g_ext_stat = ext_stat;
 	return (ret_val);
 }
 

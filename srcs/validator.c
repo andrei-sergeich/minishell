@@ -4,13 +4,13 @@ int	first_check(char *input, int it)
 {
 //	g_ext_stat = 258;
 	if (input[it] == '|' && input[it + 1] == '|')
-		return (print_msg(1, "syntax error near unexpected token `||'"));
+		return (print_msg(1, "syntax error near unexpected token `||'", 258));
 	else if (input[it] == '|')
-		return (print_msg(1, "syntax error near unexpected token `|'"));
+		return (print_msg(1, "syntax error near unexpected token `|'", 258));
 	else if (input[it] == ';' && input[it + 1] == ';')
-		return (print_msg(1, "syntax error near unexpected token `;;'"));
+		return (print_msg(1, "syntax error near unexpected token `;;'", 258));
 	else if (input[it] == ';')
-		return (print_msg(1, "syntax error near unexpected token `;'"));
+		return (print_msg(1, "syntax error near unexpected token `;'", 258));
 	return (0);
 }
 
@@ -22,15 +22,15 @@ int	counting_pipes_or_delimeters(char *input, int it)
 //		g_ext_stat = 258;
 		if (input[it + 1] == '|')
 			return (print_msg(1, \
-				"syntax error near unexpected token `||'"));
-		return (print_msg(1, "syntax error near unexpected token `|'"));
+				"syntax error near unexpected token `||'", 258));
+		return (print_msg(1, "syntax error near unexpected token `|'", 258));
 	}
 	if (input[it] == ';')
 	{
 //		g_ext_stat = 258;
 		if (input[it + 1] == ';' || input[it - 1] == ';')
-			return (print_msg(1,"syntax error near unexpected token `;;'"));
-		return (print_msg(1, "syntax error near unexpected token `;'"));
+			return (print_msg(1,"syntax error near unexpected token `;;'", 258));
+		return (print_msg(1, "syntax error near unexpected token `;'", 258));
 	}
 	return (0);
 }
@@ -43,7 +43,7 @@ int	counting_quotes(char *input, int *it, char quote)
 			return (0);
 	}
 //	g_ext_stat = 258;
-	return (print_msg(1, "syntax error with unclosed quotes"));
+	return (print_msg(1, "syntax error with unclosed quotes", 258));
 }
 
 int	validator(char *input)
