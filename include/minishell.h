@@ -20,6 +20,7 @@ typedef struct s_shell
 {
 	char			*input;
 	struct s_envl	*env_copy;
+	struct s_arg	*args;
 }					t_shell;
 
 typedef struct s_envl
@@ -29,6 +30,14 @@ typedef struct s_envl
 	char			*value;
 	struct s_envl	*next;
 }					t_envl;
+
+typedef struct s_arg
+{
+	char			*arg_as_is;
+	char			*arg_cleaned;
+	int				redirect;
+	struct s_arg	*next;
+}				t_arg;
 
 char	*find_in_env(t_envl *env_copy, char *key);
 void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value);
@@ -50,6 +59,8 @@ int		validator(char *input);
 int		counting_redirect(char *input, int *it, char redirect);
 //char	*pass_whitespaces(char *input);
 char	*is_dollar(char *input, int *it, t_envl *env_copy);
+
+t_arg	*arguments_processing(t_shell *mini);
 
 void	shlvl_up(t_shell *mini);
 void	shlvl_down(t_shell *mini);

@@ -7,7 +7,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-//	rl_outstream = stderr;
+	rl_outstream = stderr;
 //	g_ext_stat = 0;
 	mini = allocator(sizeof(t_shell));
 	mini->env_copy = copying_envp(envp);

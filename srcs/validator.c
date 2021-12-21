@@ -5,11 +5,11 @@ int	first_check(char *input, int it)
 //	g_ext_stat = 258;
 	if (input[it] == '|' && input[it + 1] == '|')
 		return (print_msg(1, "syntax error near unexpected token `||'", 258));
-	else if (input[it] == '|')
+	if (input[it] == '|')
 		return (print_msg(1, "syntax error near unexpected token `|'", 258));
-	else if (input[it] == ';' && input[it + 1] == ';')
+	if (input[it] == ';' && input[it + 1] == ';')
 		return (print_msg(1, "syntax error near unexpected token `;;'", 258));
-	else if (input[it] == ';')
+	if (input[it] == ';')
 		return (print_msg(1, "syntax error near unexpected token `;'", 258));
 	return (0);
 }
