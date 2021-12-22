@@ -48,7 +48,6 @@ void	liberator(t_shell *mini);
 void	envl_destroy(t_envl **lst);
 void	lstdelone(t_envl *lst);
 int		print_msg(int ret_val, char *message, int ext_stat);
-int		opener(char *path, char flag);
 
 /*
  * copying envp
