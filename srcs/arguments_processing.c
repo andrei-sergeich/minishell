@@ -29,10 +29,12 @@ int	find_end(char *input, int it, int *flag)
 
 void	split_input(char *input, t_arg **args, t_shell *mini)
 {
-	int it;
+	int	it;
 	int	end;
 	int	flag;
 
+	(void)args;
+	(void)mini;
 	it = 0;
 	flag = 0;
 	while (input[it])
@@ -48,4 +50,5 @@ t_arg	*arguments_processing(t_shell *mini)
 {
 	mini->args = NULL;
 	split_input(mini->input, &(mini->args), mini);
+	return (mini->args);
 }

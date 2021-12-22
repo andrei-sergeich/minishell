@@ -12,12 +12,7 @@ int	main(int argc, char **argv, char **envp)
 	mini = allocator(sizeof(t_shell));
 	mini->env_copy = copying_envp(envp);
 	shlvl_up(mini);
-//		while (mini->env_copy)
-//	{
-//		printf("%s\n", mini->env_copy->line);
-//		printf("%s=%s\n", mini->env_copy->key, mini->env_copy->value);
-//		mini->env_copy = mini->env_copy->next;
-//	}
+//	print_env_copy(mini);
 //	while (1)
 //	{
 		parsing(mini, mini->env_copy);

@@ -29,16 +29,16 @@ int	opener(char *path, char flag)
 
 int	find_file_name(char *input, int *it)
 {
-	int fd;
-	int begin;
-	char *file_name;
-	printf("input = |%s|\n", input);
+	int		fd;
+	int		begin;
+	char	*file_name;
 
+	printf("input = |%s|\n", input);
 //	(*it)++;
 	*it = pass_whitespaces(input, (*it) + 1);
 	printf("it = %c	%d\n", input[*it], *it);
 	begin = *it;
-	while (input[*it] && /*ft_isprint(input[*it]) && */input[*it] != ' ')
+	while (input[*it] && /*ft_isprint(input[*it]) && */ input[*it] != ' ')
 	{
 //		printf("it = %c	%d\n", input[*it], *it);
 		(*it)++;

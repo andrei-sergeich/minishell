@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -39,34 +40,76 @@ typedef struct s_arg
 	struct s_arg	*next;
 }				t_arg;
 
-char	*find_in_env(t_envl *env_copy, char *key);
-void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value);
+/*
+ * utils
+ */
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
-int	print_msg(int ret_val, char *message, int ext_stat);
-
+void	envl_destroy(t_envl **lst);
+void	lstdelone(t_envl *lst);
+int		print_msg(int ret_val, char *message, int ext_stat);
 int		opener(char *path, char flag);
-int		find_file_name(char *input, int *it);
 
+/*
+ * copying envp
+ */
 t_envl	*copying_envp(char **envp);
 void	envl_lstadd_back(t_envl	**list, t_envl *new);
 t_envl	*envl_lstnew(char *env_str);
 char	*copy_key(char *env_part);
 char	*copy_value(char *env_part);
 
-void	parsing(t_shell *mini, t_envl *env_copy);
-int		validator(char *input);
-int		counting_redirect(char *input, int *it, char redirect);
-//char	*pass_whitespaces(char *input);
-char	*is_dollar(char *input, int *it, t_envl *env_copy);
+/*
+ * change value in env copy
+ */
+void	change_value_in_env_copy(t_envl *env_copy, char *key, char *value);
+char	*find_in_env(t_envl *env_copy, char *key);
 
-t_arg	*arguments_processing(t_shell *mini);
-
+/*
+ * change SHELL LEVEL
+ */
 void	shlvl_up(t_shell *mini);
 void	shlvl_down(t_shell *mini);
 
+/*
+ * parsing
+ */
+void	parsing(t_shell *mini, t_envl *env_copy);
 
+/*
+ * validating input
+ */
+int		validator(char *input);
+int		first_check(char *input, int it);
+int		counting_pipes_or_delimeters(char *input, int it);
+int		counting_quotes(char *input, int *it, char quote);
+int		counting_redirect(char *input, int *it, char redirect);
+int		write_redirect(char *input, int *it);
+int		read_redirect(char *input, int *it);
+int		last_check(char *input, int *it);
+
+t_arg	*arguments_processing(t_shell *mini);
+
+/*
+ * parsing arguments
+ */
+char	*postparser(char *input, t_envl *env_copy);
+char	*is_quote(char *input, int *it);
+char	*is_db_quote(char *input, int *it, t_envl *env_copy);
+char	*str_handler(char *input, int begin, int end);
+char	*is_slash(char *input, int *it);
+char	*is_dollar(char *input, int *it, t_envl *env_copy);
+char	*key_handler(char *input, int begin, int end, t_envl *env_copy);
+int		key_checker(char c);
+
+/*
+ * parser utils
+ */
 int		pass_whitespaces(char *input, int it);
+int		opener(char *path, char flag);
+int		find_file_name(char *input, int *it);
 
+// printer
+void	print_env_copy(t_shell *mini);
 
 #endif

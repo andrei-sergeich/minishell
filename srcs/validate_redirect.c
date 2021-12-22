@@ -90,14 +90,8 @@ int	write_redirect(char *input, int *it)
 int	counting_redirect(char *input, int *it, char redirect)
 {
 	if (redirect == '>' && write_redirect(input, it))
-	{
-//		g_ext_stat = 258;
 		return (1);
-	}
 	if (redirect == '<' && read_redirect(input, it))
-	{
-//		g_ext_stat = 258;
 		return (1);
-	}
 	return (0);
 }
