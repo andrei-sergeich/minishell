@@ -23,7 +23,7 @@ void	*allocator(size_t size)
 	return (ptr);
 }
 
-void	lstdelone(t_envl *lst)
+void	envl_lstdelone(t_envl *lst)
 {
 	if (!lst)
 		return ;
@@ -37,6 +37,20 @@ void	lstdelone(t_envl *lst)
 	lst = NULL;
 }
 
+void	args_lstdelone(t_arg *lst)
+{
+	if (!lst)
+		return ;
+	free(lst->arg_as_is);
+	lst->arg_as_is = NULL;
+	free(lst->arg_as_is);
+	lst->arg_cleaned = NULL;
+	free(lst->arg_cleaned);
+	lst->arg_cleaned = NULL;
+	free(lst);
+	lst = NULL;
+}
+
 void	envl_destroy(t_envl **lst)
 {
 	t_envl	*tmp;
@@ -46,7 +60,22 @@ void	envl_destroy(t_envl **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		lstdelone(*lst);
+		envl_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
+void	args_destroy(t_arg **lst)
+{
+	t_arg	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		args_lstdelone(*lst);
 		*lst = tmp;
 	}
 	*lst = NULL;
@@ -55,5 +84,6 @@ void	envl_destroy(t_envl **lst)
 void	liberator(t_shell *mini)
 {
 	envl_destroy(&mini->env_copy);
+	args_destroy(&mini->args);
 	free(mini);
 }

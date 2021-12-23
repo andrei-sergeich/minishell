@@ -46,7 +46,7 @@ typedef struct s_arg
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
 void	envl_destroy(t_envl **lst);
-void	lstdelone(t_envl *lst);
+void	envl_lstdelone(t_envl *lst);
 int		print_msg(int ret_val, char *message, int ext_stat);
 
 /*
@@ -110,5 +110,8 @@ int		find_file_name(char *input, int *it);
 
 // printer
 void	print_env_copy(t_shell *mini);
+void	print_args(t_shell *mini);
+
+
 
 #endif
