@@ -41,10 +41,8 @@ void	args_lstdelone(t_arg *lst)
 {
 	if (!lst)
 		return ;
-	free(lst->arg_as_is);
-	lst->arg_as_is = NULL;
-	free(lst->arg_as_is);
-	lst->arg_cleaned = NULL;
+//	free(lst->arg_as_is);
+//	lst->arg_as_is = NULL;
 	free(lst->arg_cleaned);
 	lst->arg_cleaned = NULL;
 	free(lst);

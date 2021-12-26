@@ -4,15 +4,14 @@ t_arg	*args_lstnew(char *arg_str, t_shell *mini)
 {
 	t_arg	*element;
 
-	(void)mini;
 	element = (t_arg *)malloc(sizeof(t_arg));
 	if (!element)
 		return (NULL);
-	element->arg_as_is = ft_strdup(arg_str);
-	element->arg_cleaned = postparser(element->arg_as_is, mini->env_copy);
+//	element->arg_as_is = ft_strdup(arg_str);
+	element->arg_cleaned = postparser(arg_str, mini->env_copy);
 	element->redirect = 0;
 	element->next = NULL;
-	free (arg_str);
+//	free (arg_str);
 	return (element);
 }
 
@@ -63,10 +62,11 @@ int	find_end(char *input, int it, int *flag)
 
 void	split_input(char *input, t_arg **args, t_shell *mini)
 {
-	int	it;
-	int	begin;
-	int	end;
-	int	flag;
+	int		it;
+	int		begin;
+	int		end;
+	int		flag;
+	char	*tmp;
 
 	it = 0;
 	flag = 0;
@@ -79,9 +79,20 @@ void	split_input(char *input, t_arg **args, t_shell *mini)
 		end = find_end(input, it, &flag);
 		it = end;
 		if (flag != 0)
-			return ;
+		{
+			tmp = ft_substr(input, begin, end - begin);
+			if (ft_strcmp(tmp, "\0"))
+				args_lstadd_back(args, args_lstnew(tmp, mini));
+			else
+				free(tmp);
+			args_lstadd_back(args, args_lstnew(ft_substr(input, end, flag), mini));
+			it += flag;
+			flag = 0;
+//			return;
+		}
 		else
-			args_lstadd_back(args, args_lstnew(ft_substr(input, begin, end - begin), mini));
+			args_lstadd_back(args, \
+			args_lstnew(ft_substr(input, begin, end - begin), mini));
 //		it++;
 	}
 }

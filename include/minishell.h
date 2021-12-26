@@ -34,7 +34,7 @@ typedef struct s_envl
 
 typedef struct s_arg
 {
-	char			*arg_as_is;
+//	char			*arg_as_is;
 	char			*arg_cleaned;
 	int				redirect;
 	struct s_arg	*next;
