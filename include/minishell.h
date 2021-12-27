@@ -73,7 +73,7 @@ void	shlvl_down(t_shell *mini);
 /*
  * parsing
  */
-void	parsing(t_shell *mini, t_envl *env_copy);
+void	parser(t_shell *mini, t_envl *env_copy);
 
 /*
  * validating input
@@ -87,7 +87,15 @@ int		write_redirect(char *input, int *it);
 int		read_redirect(char *input, int *it);
 int		last_check(char *input, int *it);
 
+/*
+ * processing arguments
+ */
 t_arg	*arguments_processing(t_shell *mini);
+void	split_input(char *input, t_arg **args, t_shell *mini);
+int		find_end(char *input, int it, int *flag);
+void	args_lstadd_back(t_arg	**list, t_arg *new);
+t_arg	*args_lstnew(char *arg_str, t_shell *mini);
+void	set_redirect(t_arg *args);
 
 /*
  * parsing arguments

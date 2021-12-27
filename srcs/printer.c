@@ -15,7 +15,7 @@ void	print_args(t_shell *mini)
 	while (mini->args)
 	{
 //		printf("%s\n", mini->args->arg_as_is);
-		printf("cleaned - %s\n", mini->args->arg_cleaned);
+		printf("cleaned - %s \t %d\n", mini->args->arg_cleaned, mini->args->redirect);
 		mini->args = mini->args->next;
 	}
 }

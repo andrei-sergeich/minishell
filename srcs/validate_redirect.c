@@ -12,6 +12,8 @@ int	last_check(char *input, int *it)
 		return (print_msg(1, "syntax error near unexpected token `>'", 258));
 	if (input[*it] == '<')
 		return (print_msg(1, "syntax error near unexpected token `<'", 258));
+	if (input[*it] == ';')
+		return (print_msg(1, "syntax error near unexpected token `;'", 258));
 	return (0);
 }
 
