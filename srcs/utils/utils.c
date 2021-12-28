@@ -37,7 +37,7 @@ void	envl_lstdelone(t_envl *lst)
 	lst = NULL;
 }
 
-void	args_lstdelone(t_arg *lst)
+void	args_lstdelone(t_argl *lst)
 {
 	if (!lst)
 		return ;
@@ -64,9 +64,9 @@ void	envl_destroy(t_envl **lst)
 	*lst = NULL;
 }
 
-void	args_destroy(t_arg **lst)
+void	args_destroy(t_argl **lst)
 {
-	t_arg	*tmp;
+	t_argl	*tmp;
 
 	if (!lst)
 		return ;

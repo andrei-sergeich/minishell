@@ -21,7 +21,8 @@ typedef struct s_shell
 {
 	char			*input;
 	struct s_envl	*env_copy;
-	struct s_arg	*args;
+	struct s_argl	*args;
+	struct s_cmdl	*cmds;
 }					t_shell;
 
 typedef struct s_envl
@@ -32,13 +33,31 @@ typedef struct s_envl
 	struct s_envl	*next;
 }					t_envl;
 
-typedef struct s_arg
+typedef struct s_argl
 {
 //	char			*arg_as_is;
 	char			*arg_cleaned;
 	int				redirect;
-	struct s_arg	*next;
-}				t_arg;
+	struct s_argl	*next;
+}				t_argl;
+
+typedef struct s_cmdl
+{
+	char			**command;
+	int				pipe_fd[2];
+	int				in;
+	int				out;
+	int				fork;
+	pid_t			pid;
+//	struct s_rdr	*redir;
+	struct s_cmdl	*next;
+}				t_cmdl;
+
+//typedef struct s_redir
+//{
+//	char			*name;
+//	struct s_rdr	*next;
+//}				t_redir;
 
 /*
  * utils
@@ -90,12 +109,12 @@ int		last_check(char *input, int *it);
 /*
  * processing arguments
  */
-t_arg	*arguments_processing(t_shell *mini);
-void	split_input(char *input, t_arg **args, t_shell *mini);
+t_argl	*arguments_processing(t_shell *mini);
+void	split_input(char *input, t_argl **args, t_shell *mini);
 int		find_end(char *input, int it, int *flag);
-void	args_lstadd_back(t_arg	**list, t_arg *new);
-t_arg	*args_lstnew(char *arg_str, t_shell *mini);
-void	set_redirect(t_arg *args);
+void	args_lstadd_back(t_argl	**list, t_argl *new);
+t_argl	*args_lstnew(char *arg_str, t_shell *mini);
+void	set_redirect(t_argl *args);
 
 /*
  * parsing arguments
@@ -116,9 +135,14 @@ int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
 int		find_file_name(char *input, int *it);
 
+/*
+ * processing commands
+ */
+t_cmdl	*commands_processing(t_shell *mini);
+
 // printer
 void	print_env_copy(t_envl *env_copy);
-void	print_args(t_arg *args);
+void	print_args(t_argl *args);
 
 
 

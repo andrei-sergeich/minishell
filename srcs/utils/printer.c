@@ -10,7 +10,7 @@ void	print_env_copy(t_envl *env_copy)
 	}
 }
 
-void	print_args(t_arg *args)
+void	print_args(t_argl *args)
 {
 	while (args)
 	{

@@ -19,6 +19,7 @@ void	parser(t_shell *mini, t_envl *env_copy)
 	if (validator(mini->input) == 0)
 	{
 		mini->args = arguments_processing(mini);
+		mini->cmds = commands_processing(mini);
 //		mini->input = postparser(mini->input, env_copy);
 	}
 //	printf("%p\n", mini->input);

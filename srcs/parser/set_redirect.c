@@ -10,7 +10,7 @@ int	is_redirect(char *argument)
 	return (0);
 }
 
-void	set_redirect(t_arg *args)
+void	set_redirect(t_argl *args)
 {
 	while (args)
 	{

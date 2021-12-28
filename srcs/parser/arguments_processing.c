@@ -1,10 +1,10 @@
 #include "../include/minishell.h"
 
-t_arg	*args_lstnew(char *arg_str, t_shell *mini)
+t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 {
-	t_arg	*element;
+	t_argl	*element;
 
-	element = (t_arg *)malloc(sizeof(t_arg));
+	element = (t_argl *)malloc(sizeof(t_argl));
 	if (!element)
 		return (NULL);
 //	element->arg_as_is = ft_strdup(arg_str);
@@ -15,9 +15,9 @@ t_arg	*args_lstnew(char *arg_str, t_shell *mini)
 	return (element);
 }
 
-void	args_lstadd_back(t_arg	**list, t_arg *new)
+void	args_lstadd_back(t_argl	**list, t_argl *new)
 {
-	t_arg	*last;
+	t_argl	*last;
 
 	if (!list || !new)
 		exit(EXIT_FAILURE); 			/* or return */
@@ -60,7 +60,7 @@ int	find_end(char *input, int it, int *flag)
 	return (it);
 }
 
-void	split_input(char *input, t_arg **args, t_shell *mini)
+void	split_input(char *input, t_argl **args, t_shell *mini)
 {
 	int		it;
 	int		begin;
@@ -98,12 +98,11 @@ void	split_input(char *input, t_arg **args, t_shell *mini)
 			args_lstadd_back(args, \
 			args_lstnew(ft_substr(input, begin, end - begin), mini));
 		}
-
 //		it++;
 	}
 }
 
-t_arg	*arguments_processing(t_shell *mini)
+t_argl	*arguments_processing(t_shell *mini)
 {
 	mini->args = NULL;
 	split_input(mini->input, &(mini->args), mini);
