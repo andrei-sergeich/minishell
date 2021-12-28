@@ -17,8 +17,10 @@ int	main(int argc, char **argv, char **envp)
 //	{
 		parser(mini, mini->env_copy);
 //	}
+	print_args(mini->args);
+//	print_env_copy(mini->env_copy);
 	liberator(mini);
-//	while (1);
+	while (1);
 //	exit(9);
 	return (0);
 }

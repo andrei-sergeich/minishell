@@ -117,8 +117,8 @@ int		opener(char *path, char flag);
 int		find_file_name(char *input, int *it);
 
 // printer
-void	print_env_copy(t_shell *mini);
-void	print_args(t_shell *mini);
+void	print_env_copy(t_envl *env_copy);
+void	print_args(t_arg *args);
 
 
 

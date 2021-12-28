@@ -4,7 +4,7 @@ project(minishell C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_DL_LIBS -lreadline)
 
-FILE(GLOB SRCS "srcs/*.c")
+FILE(GLOB SRCS "srcs/*/*.c" "srcs/*.c")
 
 include_directories(include)
 include_directories(libft)

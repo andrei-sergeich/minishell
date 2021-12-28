@@ -82,16 +82,23 @@ void	split_input(char *input, t_arg **args, t_shell *mini)
 		{
 			tmp = ft_substr(input, begin, end - begin);
 			if (ft_strcmp(tmp, "\0"))
+			{
 				args_lstadd_back(args, args_lstnew(tmp, mini));
+			}
 			else
+			{
 				free(tmp);
+			}
 			args_lstadd_back(args, args_lstnew(ft_substr(input, end, flag), mini));
 			it += flag;
 			flag = 0;
 		}
 		else
+		{
 			args_lstadd_back(args, \
 			args_lstnew(ft_substr(input, begin, end - begin), mini));
+		}
+
 //		it++;
 	}
 }
@@ -101,6 +108,5 @@ t_arg	*arguments_processing(t_shell *mini)
 	mini->args = NULL;
 	split_input(mini->input, &(mini->args), mini);
 	set_redirect(mini->args);
-	print_args(mini);
 	return (mini->args);
 }
