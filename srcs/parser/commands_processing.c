@@ -1,5 +1,18 @@
 #include "../include/minishell.h"
 
+t_cmdl	*cmds_lstnew(t_argl *args)
+{
+	t_cmdl	*cmds;
+	int		quantity;
+
+	cmds = (t_cmdl *)malloc(sizeof(t_cmdl));
+	if (!cmds || !args)
+		return (NULL);
+	cmds->redir = NULL;
+	cmds->redir = ms_extract_redirects(&args);
+	quantity = get_cmd_size(args);
+}
+
 void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new)
 {
 	t_cmdl	*last;

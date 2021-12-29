@@ -49,15 +49,15 @@ typedef struct s_cmdl
 	int				out;
 	int				fork;
 	pid_t			pid;
-//	struct s_rdr	*redir;
+	struct s_rdr	*redir;
 	struct s_cmdl	*next;
 }				t_cmdl;
 
-//typedef struct s_redir
-//{
-//	char			*name;
-//	struct s_rdr	*next;
-//}				t_redir;
+typedef struct s_redir
+{
+	char			*name;
+	struct s_redir	*next;
+}				t_redir;
 
 /*
  * utils
@@ -139,11 +139,11 @@ int		find_file_name(char *input, int *it);
  * processing commands
  */
 t_cmdl	*commands_processing(t_shell *mini);
+void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new);
+t_cmdl	*cmds_lstnew(t_argl *args);
 
 // printer
 void	print_env_copy(t_envl *env_copy);
 void	print_args(t_argl *args);
-
-
 
 #endif

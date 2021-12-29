@@ -23,6 +23,7 @@ int	opener(char *path, char flag)
 		//	g_ext_stat = 258;
 		// ret_val -1???
 		print_msg(1, strerror(errno), 258);
+		exit(errno);
 	}
 	return (fd);
 }

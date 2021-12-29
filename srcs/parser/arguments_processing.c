@@ -36,7 +36,6 @@ int	find_end(char *input, int it, int *flag)
 {
 	char	quote;
 
-//	it--;
 	while (input[it])
 	{
 		if (input[it] == '\'' || input[it] == '\"')
@@ -82,23 +81,16 @@ void	split_input(char *input, t_argl **args, t_shell *mini)
 		{
 			tmp = ft_substr(input, begin, end - begin);
 			if (ft_strcmp(tmp, "\0"))
-			{
 				args_lstadd_back(args, args_lstnew(tmp, mini));
-			}
 			else
-			{
 				free(tmp);
-			}
 			args_lstadd_back(args, args_lstnew(ft_substr(input, end, flag), mini));
 			it += flag;
 			flag = 0;
 		}
 		else
-		{
 			args_lstadd_back(args, \
 			args_lstnew(ft_substr(input, begin, end - begin), mini));
-		}
-//		it++;
 	}
 }
 
