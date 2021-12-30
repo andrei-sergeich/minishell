@@ -51,7 +51,7 @@ int	find_end(char *input, int it, int *flag)
 				*flag = 1;
 			if (ft_strchr("<>", input[it]) && ft_strchr("<>", input[it + 1]))
 				*flag = 2;
-			it = pass_whitespaces(input, it);
+//			it = pass_whitespaces(input, it);
 			return (it);
 		}
 		it++;
@@ -77,6 +77,7 @@ void	split_input(char *input, t_argl **args, t_shell *mini)
 			return ;
 		end = find_end(input, it, &flag);
 		it = end;
+		it = pass_whitespaces(input, it); // строка 54 переставлена сюда, чтобы в аргумент не записывались пробелы
 		if (flag != 0)
 		{
 			tmp = ft_substr(input, begin, end - begin);
@@ -96,7 +97,6 @@ void	split_input(char *input, t_argl **args, t_shell *mini)
 
 t_argl	*arguments_processing(t_shell *mini)
 {
-	mini->args = NULL;
 	split_input(mini->input, &(mini->args), mini);
 	set_redirect(mini->args);
 	return (mini->args);

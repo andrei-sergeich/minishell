@@ -33,6 +33,6 @@ char	*postparser(char *input, t_envl *env_copy) // "", '', \, $, ;, |, >, >>, <,
 			input = is_dollar(input, &it, env_copy);
 		it++;
 	}
-	printf("str = %s\n", input);
+//	printf("str = %s\n", input);
 	return (input);
 }

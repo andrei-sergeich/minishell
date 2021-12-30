@@ -19,7 +19,7 @@ void	set_redirect(t_argl *args)
 			args->redirect = 1;
 			args->next->redirect = 2;
 			args = args->next->next;
-			opener(args->arg_cleaned);
+//			opener(args->arg_cleaned);
 		}
 		else if (args)
 			args = args->next;

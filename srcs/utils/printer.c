@@ -2,6 +2,8 @@
 
 void	print_env_copy(t_envl *env_copy)
 {
+	if (env_copy == NULL)
+		return ;
 	while (env_copy)
 	{
 		printf("%s\n", env_copy->line);
@@ -12,10 +14,30 @@ void	print_env_copy(t_envl *env_copy)
 
 void	print_args(t_argl *args)
 {
+	if (args == NULL)
+		return ;
 	while (args)
 	{
 //		printf("%s\n", mini->args->arg_as_is);
-		printf("cleaned - %s \t %d\n", args->arg_cleaned, args->redirect);
+		printf("cleaned - |%s| \t %d\n", args->arg_cleaned, args->redirect);
 		args = args->next;
+	}
+}
+
+void	print_cmds(t_cmdl *cmds)
+{
+	int	it;
+
+	if (cmds == NULL)
+		return ;
+	while (cmds)
+	{
+		it = 0;
+		while (cmds->command[it])
+		{
+			printf("command[%d] - |%s|\n", it, cmds->command[it]);
+			it++;
+		}
+		cmds = cmds->next;
 	}
 }

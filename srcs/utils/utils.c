@@ -23,6 +23,14 @@ void	*allocator(size_t size)
 	return (ptr);
 }
 
+void	initializator(t_shell *mini)
+{
+	mini->input = NULL;
+	mini->env_copy = NULL;
+	mini->cmds = NULL;
+	mini->args = NULL;
+}
+
 void	envl_lstdelone(t_envl *lst)
 {
 	if (!lst)
@@ -45,6 +53,25 @@ void	args_lstdelone(t_argl *lst)
 //	lst->arg_as_is = NULL;
 	free(lst->arg_cleaned);
 	lst->arg_cleaned = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	cmds_lstdelone(t_cmdl *lst)
+{
+	int	it;
+
+	it = 0;
+	if (!lst)
+		return ;
+	while (lst->command[it])
+	{
+		free(lst->command[it]);
+		lst->command[it] = NULL;
+		it++;
+	}
+	free(lst->command);
+	lst->command = NULL;
 	free(lst);
 	lst = NULL;
 }
@@ -79,9 +106,25 @@ void	args_destroy(t_argl **lst)
 	*lst = NULL;
 }
 
+void	cmds_destroy(t_cmdl **lst)
+{
+	t_cmdl	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		cmds_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
 void	liberator(t_shell *mini)
 {
-	envl_destroy(&mini->env_copy);
+//	envl_destroy(&mini->env_copy);
 	args_destroy(&mini->args);
-	free(mini);
+	cmds_destroy(&mini->cmds);
+//	free(mini);
 }
