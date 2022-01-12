@@ -35,9 +35,21 @@ void	print_cmds(t_cmdl *cmds)
 		it = 0;
 		while (cmds->command[it])
 		{
-			printf("command[%d] - |%s|\n", it, cmds->command[it]);
+			printf("command[%d] - |%s|\t in - |%d|\t out - |%d|\n", it, cmds->command[it], cmds->in, cmds->out);
 			it++;
 		}
 		cmds = cmds->next;
+	}
+}
+
+void	print_redir(t_redir *rdr)
+{
+	if (rdr == NULL)
+		return ;
+	while (rdr)
+	{
+//		printf("%s\n", mini->args->arg_as_is);
+		printf("|%s| \t |%s|\n", rdr->type, rdr->name);
+		rdr = rdr->next;
 	}
 }

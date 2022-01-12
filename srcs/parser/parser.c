@@ -8,7 +8,7 @@ void	parser(t_shell *mini, t_envl *env_copy)
 //	mini->input = ft_strdup("ls co'$USER' mma'n'aaa");
 //	mini->input = ft_strdup("	'|'	ls	|	-la     | ss	qq");
 //	mini->input = ft_strdup("grep time <           test.txt ; grep time < test");
-	mini->input = ft_strdup("jlkh tyjktrkj rtkyj'rkj ruy");
+	mini->input = ft_strdup("<test.txt grep ou < test3");
 	printf("mini->input = %s\n\n", mini->input);
 	if (!mini->input)
 		exit(0);

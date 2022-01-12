@@ -1,5 +1,71 @@
 #include "../include/minishell.h"
 
+void	redir_lstadd_back(t_redir **list, t_redir *new)
+{
+	t_redir	*last;
+
+	if (!list || !new)
+		exit(EXIT_FAILURE); 			/* or return */
+	if (*list)
+	{
+		last = *list;
+		while (last->next)
+			last = last->next;
+		last->next = new;
+	}
+	else
+		*list = new;
+}
+
+t_redir	*redir_lstnew(char *type, char *name)
+{
+	t_redir	*element;
+
+	element = (t_redir *)malloc(sizeof(t_redir));
+	if (!element)
+		return (NULL);
+	element->type = ft_strdup(type);
+//	printf("%s\n", element->type);
+	element->name = ft_strdup(name);
+//	printf("%s\n", element->name);
+	element->next = NULL;
+//	free(content);
+	return (element);
+}
+
+t_redir	*redirect_processing(t_argl **args)
+{
+	t_redir	*rdr;
+
+	if (!args)
+		return (NULL);
+	rdr = NULL;
+//	if (manage_front_redirect(arg, &rdr) == 1)
+//		return (rdr);
+//	tmp = *arg;
+	while ((*args))
+	{
+		if (ft_strcmp((*args)->arg_cleaned, "|") == 0)
+			break ;
+		else if ((*args)->redirect == 1)
+		{
+			printf("%s\n", (*args)->arg_cleaned);
+//			str = ft_strjoin(args->next->arg_cleaned, args->next->next->arg_cleaned);
+			redir_lstadd_back(&rdr, redir_lstnew((*args)->arg_cleaned, (*args)->next->arg_cleaned));
+			printf("%s\t%s\n", rdr->type, rdr->name);
+			args_lstdelone((*args)->next);
+			args_lstdelone((*args)->next);
+//			lstremove_node_arg(&(args->next));
+//			lstremove_node_arg(&(args->next));
+		}
+//		else if ((*args))
+			(*args) = (*args)->next;
+	}
+	printf("tut3\n");
+	print_redir(rdr);
+	return (rdr);
+}
+
 int	find_full_command(t_argl *args)
 {
 	int		quantity;
@@ -8,8 +74,8 @@ int	find_full_command(t_argl *args)
 	if (!args)
 		return (0);
 	tmp = args;
-	quantity = 0;
-	if (tmp->redirect == 0)
+//	quantity = 0;
+//	if (tmp->redirect == 0)
 		quantity = 1;
 	while (tmp->next)
 	{
@@ -60,9 +126,16 @@ t_cmdl	*cmds_lstnew(t_argl *args)
 	if (!element || !args)
 		return (NULL);
 	element->redir = NULL;
-//	cmds->redir = ms_extract_redirects(&args);
+	element->redir = redirect_processing(&args);
+	printf("tut\n");
 	quantity_lists = find_full_command(args);
 	element->command = write_cmd_to_array(args, quantity_lists);
+//	redir_check(args);
+	element->in = 0;
+	if (args->redirect == 1)
+		element->out = 3;
+	else
+		element->out = 1;
 	element->next = NULL;
 	return (element);
 }

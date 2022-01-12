@@ -55,6 +55,7 @@ typedef struct s_cmdl
 
 typedef struct s_redir
 {
+	char			*type;
 	char			*name;
 	struct s_redir	*next;
 }				t_redir;
@@ -65,8 +66,12 @@ typedef struct s_redir
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
 void	initializator(t_shell *mini);
-void	envl_destroy(t_envl **lst);
 void	envl_lstdelone(t_envl *lst);
+void	args_lstdelone(t_argl *lst);
+void	cmds_lstdelone(t_cmdl *lst);
+void	envl_destroy(t_envl **lst);
+void	args_destroy(t_argl **lst);
+void	cmds_destroy(t_cmdl **lst);
 int		print_msg(int ret_val, char *message, int ext_stat);
 
 /*
@@ -147,5 +152,6 @@ t_cmdl	*cmds_lstnew(t_argl *args);
 void	print_env_copy(t_envl *env_copy);
 void	print_args(t_argl *args);
 void	print_cmds(t_cmdl *cmds);
+void	print_redir(t_redir *rdr);
 
 #endif
