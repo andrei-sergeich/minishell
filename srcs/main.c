@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **envp)
 //		liberator(mini);
 //	}
 	print_cmds(mini->cmds);
+	print_redir(mini->cmds->redir);
 //	print_args(mini->args);
 //	print_env_copy(mini->env_copy);
 	liberator(mini);

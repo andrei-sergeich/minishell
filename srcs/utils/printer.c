@@ -49,7 +49,7 @@ void	print_redir(t_redir *rdr)
 	while (rdr)
 	{
 //		printf("%s\n", mini->args->arg_as_is);
-		printf("|%s| \t |%s|\n", rdr->type, rdr->name);
+		printf("type - |%s| \t name - |%s|\n", rdr->type, rdr->name);
 		rdr = rdr->next;
 	}
 }

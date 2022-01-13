@@ -7,10 +7,10 @@ OBJS		=	$(patsubst %.c,%.o,$(SRCS))
 HEADER		=	-I./include/
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
-#CFLAGS		=	-Wall -Wextra -Werror -I ~/.brew/opt/readline/include/
-RDL			= 	-lreadline
-#RDL			= 	-lreadline -L ~/.brew/opt/readline/lib
+#CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -I ~/.brew/opt/readline/include/
+#RDL			= 	-lreadline
+RDL			= 	-lreadline -L ~/.brew/opt/readline/lib
 RM			=	rm -f
 
 all:		$(NAME)

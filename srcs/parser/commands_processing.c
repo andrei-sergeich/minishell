@@ -25,44 +25,47 @@ t_redir	*redir_lstnew(char *type, char *name)
 	if (!element)
 		return (NULL);
 	element->type = ft_strdup(type);
-//	printf("%s\n", element->type);
 	element->name = ft_strdup(name);
-//	printf("%s\n", element->name);
 	element->next = NULL;
-//	free(content);
 	return (element);
+}
+
+void	args_lstdelnode(t_argl **args)
+{
+	t_argl	*head;
+
+	if (!args || !(*args))
+		return ;
+	head = (*args)->next;
+	args_lstdelone(*args);
+	*args = head;
 }
 
 t_redir	*redirect_processing(t_argl **args)
 {
 	t_redir	*rdr;
+	t_argl	*tmp;
 
-	if (!args)
+	if (!args || !(*args))
 		return (NULL);
 	rdr = NULL;
 //	if (manage_front_redirect(arg, &rdr) == 1)
 //		return (rdr);
-//	tmp = *arg;
-	while ((*args))
+	tmp = *args;
+	while (tmp->next)
 	{
-		if (ft_strcmp((*args)->arg_cleaned, "|") == 0)
+		printf("=%s=\n", tmp->arg_cleaned);
+		if (ft_strcmp(tmp->arg_cleaned, "|") == 0)
 			break ;
-		else if ((*args)->redirect == 1)
+		if (tmp->next->redirect == 1)
 		{
-			printf("%s\n", (*args)->arg_cleaned);
-//			str = ft_strjoin(args->next->arg_cleaned, args->next->next->arg_cleaned);
-			redir_lstadd_back(&rdr, redir_lstnew((*args)->arg_cleaned, (*args)->next->arg_cleaned));
-			printf("%s\t%s\n", rdr->type, rdr->name);
-			args_lstdelone((*args)->next);
-			args_lstdelone((*args)->next);
-//			lstremove_node_arg(&(args->next));
-//			lstremove_node_arg(&(args->next));
+			redir_lstadd_back(&rdr, redir_lstnew(tmp->next->arg_cleaned, tmp->next->next->arg_cleaned));
+			args_lstdelnode(&(tmp->next));
+			args_lstdelnode(&(tmp->next));
 		}
-//		else if ((*args))
-			(*args) = (*args)->next;
+		if (tmp->next)
+			tmp = tmp->next;
 	}
-	printf("tut3\n");
-	print_redir(rdr);
 	return (rdr);
 }
 
@@ -127,9 +130,9 @@ t_cmdl	*cmds_lstnew(t_argl *args)
 		return (NULL);
 	element->redir = NULL;
 	element->redir = redirect_processing(&args);
-	printf("tut\n");
 	quantity_lists = find_full_command(args);
 	element->command = write_cmd_to_array(args, quantity_lists);
+	print_args(args);
 //	redir_check(args);
 	element->in = 0;
 	if (args->redirect == 1)
