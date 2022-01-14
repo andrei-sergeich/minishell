@@ -37,35 +37,62 @@ void	args_lstdelnode(t_argl **args)
 	if (!args || !(*args))
 		return ;
 	head = (*args)->next;
-	args_lstdelone(*args);
+	free((*args)->arg_cleaned);
+	(*args)->arg_cleaned = NULL;
+	free((*args));
 	*args = head;
 }
 
-t_redir	*redirect_processing(t_argl **args)
+int	first_redirect(t_argl **args, t_redir **rdr)
+{
+	while (*args)
+	{
+		printf("=%s=\n", (*args)->arg_cleaned);
+		if ((*args)->redirect == 1)
+		{
+			redir_lstadd_back(rdr, redir_lstnew((*args)->arg_cleaned, (*args)->next->arg_cleaned));
+//			if (!args->next->next)
+//			{
+			args_lstdelnode(args);
+			args_lstdelnode(args);
+//				return (1);
+//			}
+//			args = args->next->next;
+		}
+		if ((*args)->redirect == 0)
+			break ;
+		(*args) = (*args)->next;
+	}
+	return (0);
+}
+
+t_redir	*redirect_processing(t_argl *args)
 {
 	t_redir	*rdr;
 	t_argl	*tmp;
 
-	if (!args || !(*args))
+	if (!args)
 		return (NULL);
 	rdr = NULL;
-//	if (manage_front_redirect(arg, &rdr) == 1)
-//		return (rdr);
-	tmp = *args;
-	while (tmp->next)
+	if (first_redirect(&args, &rdr) == 1)
+		return (rdr);
+	tmp = args;
+
+	while (args->next)
 	{
-		printf("=%s=\n", tmp->arg_cleaned);
-		if (ft_strcmp(tmp->arg_cleaned, "|") == 0)
+		printf("=%s=\n", args->arg_cleaned);
+		if (ft_strcmp(args->arg_cleaned, "|") == 0)
 			break ;
-		if (tmp->next->redirect == 1)
+		if (args->next->redirect == 1)
 		{
-			redir_lstadd_back(&rdr, redir_lstnew(tmp->next->arg_cleaned, tmp->next->next->arg_cleaned));
-			args_lstdelnode(&(tmp->next));
-			args_lstdelnode(&(tmp->next));
+			redir_lstadd_back(&rdr, redir_lstnew(args->next->arg_cleaned, args->next->next->arg_cleaned));
+			args_lstdelnode(&(args->next));
+			args_lstdelnode(&(args->next));
 		}
-		if (tmp->next)
-			tmp = tmp->next;
+		if (args->next)
+			args = args->next;
 	}
+
 	return (rdr);
 }
 
@@ -124,12 +151,16 @@ t_cmdl	*cmds_lstnew(t_argl *args)
 {
 	t_cmdl	*element;
 	int		quantity_lists;
+	t_argl *tmp;
 
 	element = (t_cmdl *)malloc(sizeof(t_cmdl));
 	if (!element || !args)
 		return (NULL);
+	tmp = args;
 	element->redir = NULL;
-	element->redir = redirect_processing(&args);
+	element->redir = redirect_processing(args);
+	args = tmp;
+	print_args(args);
 	quantity_lists = find_full_command(args);
 	element->command = write_cmd_to_array(args, quantity_lists);
 	print_args(args);
