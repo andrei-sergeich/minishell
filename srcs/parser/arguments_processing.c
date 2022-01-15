@@ -11,6 +11,7 @@ t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 	element->arg_cleaned = postparser(arg_str, mini->env_copy);
 	element->redirect = 0;
 	element->next = NULL;
+	element->head = NULL;
 //	free (arg_str);
 	return (element);
 }
@@ -23,13 +24,17 @@ void	args_lstadd_back(t_argl	**list, t_argl *new)
 		exit(EXIT_FAILURE); 			/* or return */
 	if (*list)
 	{
+//		(*list)->head = *list;
 		last = *list;
 		while (last->next)
 			last = last->next;
 		last->next = new;
+		new->head = last;
+		printf("laassstt %p %p %p\n", new->head, last, last->next);
 	}
 	else
-		*list = new;
+	{ *list = new; 		printf("1 liiissstt %p\n", *list);
+	}
 }
 
 int	find_end(char *input, int it, int *flag)

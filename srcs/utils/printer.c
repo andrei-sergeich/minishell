@@ -19,7 +19,7 @@ void	print_args(t_argl *args)
 	while (args)
 	{
 //		printf("%s\n", mini->args->arg_as_is);
-		printf("cleaned - |%s| \t %d\n", args->arg_cleaned, args->redirect);
+		printf("args cleaned - |%s| \t %d\n", args->arg_cleaned, args->redirect);
 		args = args->next;
 	}
 }
@@ -35,7 +35,7 @@ void	print_cmds(t_cmdl *cmds)
 		it = 0;
 		while (cmds->command[it])
 		{
-			printf("command[%d] - |%s|\t in - |%d|\t out - |%d|\n", it, cmds->command[it], cmds->in, cmds->out);
+			printf("cmds command[%d] - |%s|\t in - |%d|\t out - |%d|\n", it, cmds->command[it], cmds->in, cmds->out);
 			it++;
 		}
 		cmds = cmds->next;
@@ -49,7 +49,7 @@ void	print_redir(t_redir *rdr)
 	while (rdr)
 	{
 //		printf("%s\n", mini->args->arg_as_is);
-		printf("type - |%s| \t name - |%s|\n", rdr->type, rdr->name);
+		printf("redirect type - |%s| \t name - |%s|\n", rdr->type, rdr->name);
 		rdr = rdr->next;
 	}
 }

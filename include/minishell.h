@@ -39,6 +39,7 @@ typedef struct s_argl
 	char			*arg_cleaned;
 	int				redirect;
 	struct s_argl	*next;
+	struct s_argl	*head;
 }				t_argl;
 
 typedef struct s_cmdl
