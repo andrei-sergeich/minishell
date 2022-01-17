@@ -39,15 +39,14 @@ typedef struct s_argl
 	char			*arg_cleaned;
 	int				redirect;
 	struct s_argl	*next;
-	struct s_argl	*head;
 }				t_argl;
 
 typedef struct s_cmdl
 {
 	char			**command;
-	int				pipe_fd[2];
 	int				in;
 	int				out;
+	int				pipe_fd[2];
 	int				fork;
 	pid_t			pid;
 	struct s_rdr	*redir;

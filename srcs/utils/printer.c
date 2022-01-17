@@ -28,7 +28,7 @@ void	print_cmds(t_cmdl *cmds)
 {
 	int	it;
 
-	if (cmds == NULL)
+	if (cmds == NULL || !cmds->command)
 		return ;
 	while (cmds)
 	{

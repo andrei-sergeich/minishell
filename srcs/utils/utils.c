@@ -66,12 +66,26 @@ void	cmds_lstdelone(t_cmdl *lst)
 		return ;
 	while (lst->command[it])
 	{
+		if (lst->command == NULL)
+			break;
 		free(lst->command[it]);
 		lst->command[it] = NULL;
 		it++;
 	}
 	free(lst->command);
 	lst->command = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	redir_lstdelone(t_redir *lst)
+{
+	if (!lst)
+		return ;
+	free(lst->type);
+	lst->type = NULL;
+	free(lst->name);
+	lst->name = NULL;
 	free(lst);
 	lst = NULL;
 }
@@ -121,10 +135,26 @@ void	cmds_destroy(t_cmdl **lst)
 	*lst = NULL;
 }
 
+void	redir_destroy(t_redir **lst)
+{
+	t_redir	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		redir_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
 void	liberator(t_shell *mini)
 {
 //	envl_destroy(&mini->env_copy);
 	args_destroy(&mini->args);
+	redir_destroy(&mini->cmds->redir);
 	cmds_destroy(&mini->cmds);
 //	free(mini);
 }
