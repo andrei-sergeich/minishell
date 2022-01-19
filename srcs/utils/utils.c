@@ -57,9 +57,37 @@ void	args_lstdelone(t_argl *lst)
 	lst = NULL;
 }
 
+void	redir_lstdelone(t_redir *lst)
+{
+	if (!lst)
+		return ;
+	free(lst->type);
+	lst->type = NULL;
+	free(lst->name);
+	lst->name = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	redir_destroy(t_redir **lst)
+{
+	t_redir	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		redir_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
 void	cmds_lstdelone(t_cmdl *lst)
 {
 	int	it;
+	t_redir *tmp;
 
 	it = 0;
 	if (!lst)
@@ -74,21 +102,13 @@ void	cmds_lstdelone(t_cmdl *lst)
 	}
 	free(lst->command);
 	lst->command = NULL;
+	tmp = (t_redir *) lst->redir;
+	redir_destroy(&tmp);
 	free(lst);
 	lst = NULL;
 }
 
-void	redir_lstdelone(t_redir *lst)
-{
-	if (!lst)
-		return ;
-	free(lst->type);
-	lst->type = NULL;
-	free(lst->name);
-	lst->name = NULL;
-	free(lst);
-	lst = NULL;
-}
+
 
 void	envl_destroy(t_envl **lst)
 {
@@ -135,26 +155,12 @@ void	cmds_destroy(t_cmdl **lst)
 	*lst = NULL;
 }
 
-void	redir_destroy(t_redir **lst)
-{
-	t_redir	*tmp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		redir_lstdelone(*lst);
-		*lst = tmp;
-	}
-	*lst = NULL;
-}
 
 void	liberator(t_shell *mini)
 {
 //	envl_destroy(&mini->env_copy);
 	args_destroy(&mini->args);
-	redir_destroy(&mini->cmds->redir);
+//	redir_destroy(&mini->cmds->redir);
 	cmds_destroy(&mini->cmds);
 //	free(mini);
 }

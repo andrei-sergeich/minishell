@@ -152,6 +152,6 @@ t_cmdl	*cmds_lstnew(t_argl *args);
 void	print_env_copy(t_envl *env_copy);
 void	print_args(t_argl *args);
 void	print_cmds(t_cmdl *cmds);
-void	print_redir(t_redir *rdr);
+void	print_redir(t_cmdl *cmds);
 
 #endif

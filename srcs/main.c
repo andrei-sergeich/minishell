@@ -23,8 +23,8 @@ int	main(int argc, char **argv, char **envp)
 //	}
 	printf("\nfrom main\n");
 	print_cmds(mini->cmds);
-	print_redir(mini->cmds->redir);
-	print_args(mini->args);
+//	print_redir(mini->cmds);
+//	print_args(mini->args);
 //	print_env_copy(mini->env_copy);
 	liberator(mini);
 //	while (1);

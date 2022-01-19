@@ -8,7 +8,8 @@ t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 	if (!element)
 		return (NULL);
 //	element->arg_as_is = ft_strdup(arg_str);
-	element->arg_cleaned = postparser(arg_str, mini->env_copy);
+//	element->arg_cleaned = postparser(arg_str, mini->env_copy);
+	element->arg_cleaned = ft_strdup(arg_str);
 	element->redirect = 0;
 	element->next = NULL;
 	return (element);

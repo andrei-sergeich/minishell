@@ -74,38 +74,8 @@ t_redir	*redirect_processing(t_argl **args)
 	rdr = NULL;
 	if (first_redirect(args, &rdr) == 1)
 		return (rdr);
-
-//	if ((*args)->redirect == 1)
-//	{
-//		redir_lstadd_back(&rdr, redir_lstnew((*args)->arg_cleaned, (*args)->next->arg_cleaned));
-//		if (!(*args)->next->next)
-//		{
-////			args_lstdelnode(&((*args)->next));
-////			args_lstdelnode(args);
-//			*args = (*args)->next->next;
-//			return (rdr);
-//		}
-//		else
-//			*args = (*args)->next->next;
-////			*args = (*args)->next;
-//	}
-//	while ((*args)->next)
-//	{
-//		if (ft_strcmp((*args)->arg_cleaned, "|") == 0)
-//			break ;
-//		if ((*args)->next->redirect == 1)
-//		{
-//			redir_lstadd_back(&rdr, redir_lstnew((*args)->next->arg_cleaned, (*args)->next->next->arg_cleaned));
-//			args_lstdelnode(&((*args)->next));
-//			args_lstdelnode(&((*args)->next));
-//		}
-//		if ((*args)->next && (*args)->next->redirect != 1)
-//			(*args) = (*args)->next;
-//	}
-//	if (ft_strcmp((*args)->arg_cleaned, "|") == 0)
-//		(*args) = (*args)->next;
 	tmp = *args;
-	printf("*%p*\n", tmp);
+//	printf("*%p*\n", tmp);
 	while (tmp->next)
 	{
 		if (ft_strcmp(tmp->arg_cleaned, "|") == 0)
@@ -130,9 +100,9 @@ int	find_full_command(t_argl *args)
 	if (!args)
 		return (0);
 	tmp = args;
-//	quantity = 0;
-//	if (tmp->redirect == 0)
-		quantity = 1;
+	quantity = 1;
+	if (ft_strcmp("|", tmp->arg_cleaned) == 0)
+		return (0);
 	while (tmp->next)
 	{
 //		printf("tmp->arg_pure is - %s\n", tmp->arg_cleaned);
@@ -183,10 +153,9 @@ t_cmdl	*cmds_lstnew(t_argl *args)
 		return (NULL);
 	element->redir = NULL;
 	element->redir = redirect_processing(&args);
-	print_args(args);
+//	print_args(args);
 	quantity_lists = find_full_command(args);
 	element->command = write_cmd_to_array(args, quantity_lists);
-//	redir_check(args);
 	element->in = 0;
 //	if (args->redirect == 1)
 //		element->out = 3;
@@ -213,6 +182,27 @@ void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new)
 		*list = new;
 }
 
+t_cmdl	*cmds_cleaning(t_shell *mini)
+{
+	t_cmdl	*tmp;
+
+
+	tmp = mini->cmds;
+	while (tmp)
+	{
+		if (tmp->command)
+		{
+			int it = 0;
+			while (tmp->command[it])
+			{
+				tmp->command[it] = postparser(tmp->command[it], mini->env_copy);
+				it++;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
+
 t_cmdl	*commands_processing(t_shell *mini)
 {
 	t_argl	*tmp;
@@ -228,25 +218,14 @@ t_cmdl	*commands_processing(t_shell *mini)
 	{
 		if ((ft_strcmp(tmp->arg_cleaned, "|")) == 0)
 		{
+//			printf("**\nfrom commands_processing\n%s\n**", tmp->arg_cleaned);
 			cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
 			cmd_begin = tmp->next;
+//			printf("%s\n", cmd_begin->arg_cleaned);
 		}
 		tmp = tmp->next;
 	}
 	cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
-
-//	cmd_begin = mini->args;
-//	if ((ft_strcmp(mini->args->arg_cleaned, "|")) == 0)
-//		mini->args = mini->args->next;
-//	while (mini->args)
-//	{
-//		if ((ft_strcmp(mini->args->arg_cleaned, "|")) == 0)
-//		{
-//			cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
-//			cmd_begin = mini->args->next;
-//		}
-//		mini->args = mini->args->next;
-//	}
-//	cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
+	cmds_cleaning(mini);
 	return (mini->cmds);
 }
