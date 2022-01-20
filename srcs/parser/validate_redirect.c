@@ -55,5 +55,6 @@ int	counting_redirect(char *input, int *it, char redirect)
 		return (1);
 	if (redirect == '<' && read_redirect(input, it))
 		return (1);
+	(*it)--;			// добавлено на случай ls >'1'
 	return (0);
 }

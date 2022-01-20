@@ -18,16 +18,15 @@ void	print_args(t_argl *args)
 		return ;
 	while (args)
 	{
-//		printf("%s\n", mini->args->arg_as_is);
-		printf("args cleaned - |%s| \t %d\n", args->arg_cleaned, args->redirect);
+		printf("args origin - |%s| \t %d\n", args->arg_origin, args->redirect);
 		args = args->next;
 	}
 }
 
 void	print_cmds(t_cmdl *cmds)
 {
-	int	it;
-	t_redir *tmp;
+	int		it;
+	t_redir	*tmp;
 
 	if (cmds == NULL || !cmds->command)
 		return ;
@@ -42,7 +41,7 @@ void	print_cmds(t_cmdl *cmds)
 		tmp = (t_redir *) cmds->redir;
 //		if (tmp == NULL)
 //			break;
-		while(tmp)
+		while (tmp)
 		{
 			printf("redirect type - |%s| \t name - |%s|\n", tmp->type, tmp->name);
 			tmp = tmp->next;
@@ -53,7 +52,7 @@ void	print_cmds(t_cmdl *cmds)
 
 void	print_redir(t_cmdl *cmds)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	if (cmds == NULL)
 		return ;
@@ -61,8 +60,8 @@ void	print_redir(t_cmdl *cmds)
 	{
 		tmp = (t_redir *) cmds->redir;
 		if (tmp == NULL)
-			break;
-		while(tmp)
+			break ;
+		while (tmp)
 		{
 			printf("redirect type - |%s| \t name - |%s|\n", tmp->type, tmp->name);
 			tmp = tmp->next;

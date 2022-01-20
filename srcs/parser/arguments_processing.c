@@ -4,14 +4,16 @@ t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 {
 	t_argl	*element;
 
+	(void)mini;
 	element = (t_argl *)malloc(sizeof(t_argl));
 	if (!element)
 		return (NULL);
-//	element->arg_as_is = ft_strdup(arg_str);
-//	element->arg_cleaned = postparser(arg_str, mini->env_copy);
-	element->arg_cleaned = ft_strdup(arg_str);
+//	element->arg_cleaned = ft_strdup(arg_str);
+//	element->arg_origin = postparser(arg_str, mini->env_copy);
+	element->arg_origin = ft_strdup(arg_str);
 	element->redirect = 0;
 	element->next = NULL;
+	free(arg_str);
 	return (element);
 }
 

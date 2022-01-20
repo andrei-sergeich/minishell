@@ -16,7 +16,7 @@ int	opener(char *path, char flag)
 		fd = open(path, O_RDONLY);
 	else if (flag == 'O')
 		fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	else if (flag == 'h')
+	else if (flag == 'A')
 		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
 	{

@@ -14,12 +14,12 @@ void	set_redirect(t_argl *args)
 {
 	while (args)
 	{
-		if (is_redirect(args->arg_cleaned) == 1)
+		if (is_redirect(args->arg_origin) == 1)
 		{
 			args->redirect = 1;
 			args->next->redirect = 2;
 			args = args->next->next;
-//			opener(args->arg_cleaned);
+//			opener(args->arg_origin);
 		}
 		else if (args)
 			args = args->next;

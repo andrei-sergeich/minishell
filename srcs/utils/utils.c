@@ -49,10 +49,10 @@ void	args_lstdelone(t_argl *lst)
 {
 	if (!lst)
 		return ;
-//	free(lst->arg_as_is);
-//	lst->arg_as_is = NULL;
-	free(lst->arg_cleaned);
-	lst->arg_cleaned = NULL;
+//	free(lst->arg_as_cleaned);
+//	lst->arg_as_cleaned = NULL;
+	free(lst->arg_origin);
+	lst->arg_origin = NULL;
 	free(lst);
 	lst = NULL;
 }
@@ -154,7 +154,6 @@ void	cmds_destroy(t_cmdl **lst)
 	}
 	*lst = NULL;
 }
-
 
 void	liberator(t_shell *mini)
 {

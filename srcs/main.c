@@ -14,17 +14,17 @@ int	main(int argc, char **argv, char **envp)
 	mini->env_copy = copying_envp(envp);
 	shlvl_up(mini);
 //	print_env_copy(mini);
-//	while (1)
-//	{
+	while (1)
+	{
 		parser(mini, mini->env_copy);
 //		if (mini->cmds)
 //			pipex();
-//		liberator(mini);
-//	}
+		liberator(mini);
+	}
 	printf("\nfrom main\n");
 	print_cmds(mini->cmds);
 //	print_redir(mini->cmds);
-//	print_args(mini->args);
+	print_args(mini->args);
 //	print_env_copy(mini->env_copy);
 	liberator(mini);
 //	while (1);
