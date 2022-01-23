@@ -15,17 +15,15 @@ void	parser(t_shell *mini, t_envl *env_copy)
 //	printf("\nmini->input = %s\n\n", mini->input);
 	if (!mini->input)
 		exit(0);
+//		exit(g_ext_stat);
 	if (*mini->input)					/* If the line has any text in it, */
 		add_history (mini->input);		/* save it on the history. */
-//	preparser(mini->input);
-//	mini->input = pass_whitespaces(mini->input);
 	if (validator(mini->input) == 0)
 	{
 		mini->args = arguments_processing(mini);
 		mini->cmds = commands_processing(mini);
 //		mini->input = postparser(mini->input, env_copy);
 	}
-//	printf("%p\n", mini->input);
 	free(mini->input);
 	mini->input = NULL;
 }

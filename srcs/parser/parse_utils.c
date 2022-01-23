@@ -7,6 +7,22 @@ int	pass_whitespaces(char *input, int it)
 	return (it);
 }
 
+void	heredoc(t_cmd *cmd, char *stop)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = readline("> ");
+		if (!ft_strncmp(line, stop, ft_strlen(stop) + 1))
+			break ;
+		ft_putendl_fd(line, cmd->out);
+		free(line);
+	}
+	close(cmd->out);
+	exit(0);
+}
+
 int	opener(char *path, char flag)
 {
 	int	fd;
@@ -20,10 +36,12 @@ int	opener(char *path, char flag)
 		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		//	g_ext_stat = 258;
-		// ret_val -1???
-		print_msg(1, strerror(errno), 258);
-//		exit(errno);
+//		print_msg(1, strerror(errno), 258);
+		exit(errno);
+
+//		g_ext_stat = 1;
+//		perror("Error");
+//		exit(g_ext_stat);
 	}
 	return (fd);
 }

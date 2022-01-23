@@ -16,9 +16,11 @@ int	main(int argc, char **argv, char **envp)
 //	print_env_copy(mini);
 	while (1)
 	{
+		sigs_interactive_shell();
 		parser(mini, mini->env_copy);
+		sigs_non_interactive_shell();
 //		if (mini->cmds)
-//			pipex();
+//			execute_cmds();
 		liberator(mini);
 	}
 	printf("\nfrom main\n");
@@ -28,6 +30,5 @@ int	main(int argc, char **argv, char **envp)
 //	print_env_copy(mini->env_copy);
 	liberator(mini);
 //	while (1);
-//	exit(9);
 	return (0);
 }

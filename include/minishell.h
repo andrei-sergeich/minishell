@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <signal.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -139,6 +140,7 @@ int		key_checker(char c);
  */
 int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
+
 int		find_file_name(char *input, int *it);
 
 /*
@@ -147,6 +149,15 @@ int		find_file_name(char *input, int *it);
 t_cmdl	*commands_processing(t_shell *mini);
 void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new);
 t_cmdl	*cmds_lstnew(t_argl *args);
+
+/*
+ * signals
+ */
+void	sigs_interactive_shell(void);
+void	sig_interactive_ctrl_c(int sig);
+void	sigs_non_interactive_shell(void);
+void	sig_non_interactive_ctrl_c(int sig);
+void	sig_non_interactive_quit(int sig);
 
 // printer
 void	print_env_copy(t_envl *env_copy);

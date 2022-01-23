@@ -152,14 +152,13 @@ t_cmdl	*cmds_lstnew(t_argl *args)
 		return (NULL);
 	element->redir = NULL;
 	element->redir = (struct s_rdr *) redirect_processing(&args);
-//	print_args(args);
 	quantity_lists = find_full_command(args);
 	element->command = write_cmd_to_array(args, quantity_lists);
 	element->in = 0;
-//	if (args->redirect == 1)
-//		element->out = 3;
-//	else
 	element->out = 1;
+	element->fork = 0;
+	element->pipe_fd[0] = 0;
+	element->pipe_fd[1] = 0;
 	element->next = NULL;
 	return (element);
 }
@@ -222,7 +221,7 @@ void	fd_opening(t_cmdl *cmds)
 		tmp = (t_redir *) cmds->redir;
 		while (tmp)
 		{
-			printf("%d * redirect type - |%s| \t name - |%s|\n", it, tmp->type, tmp->name);
+//			printf("%d * redirect type - |%s| \t name - |%s|\n", it, tmp->type, tmp->name);
 			if (ft_strcmp("<", tmp->type) == 0)
 				cmds->in = opener(tmp->name, 'I');
 			if (ft_strcmp(">", tmp->type) == 0)
@@ -232,7 +231,7 @@ void	fd_opening(t_cmdl *cmds)
 			tmp = tmp->next;
 			it++;
 		}
-		printf("in - |%d| \t out - |%d|\n", cmds->in, cmds->out);
+//		printf("in - |%d| \t out - |%d|\n", cmds->in, cmds->out);
 		cmds = cmds->next;
 	}
 }
