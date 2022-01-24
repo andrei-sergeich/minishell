@@ -10,6 +10,22 @@ int	print_msg(int ret_val, char *message, int ext_stat)
 	return (ret_val);
 }
 
+int	cmds_lstsize(t_cmdl *cmds)
+{
+	int	count;
+
+	if (!cmds)
+		return (0);
+	count = 0;
+	while (cmds)
+	{
+//		maybe if (cmds->command[0])
+		cmds = cmds->next;
+		count++;
+	}
+	return (count);
+}
+
 void	*allocator(size_t size)
 {
 	void	*ptr;

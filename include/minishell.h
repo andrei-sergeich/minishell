@@ -74,6 +74,7 @@ void	envl_destroy(t_envl **lst);
 void	args_destroy(t_argl **lst);
 void	cmds_destroy(t_cmdl **lst);
 int		print_msg(int ret_val, char *message, int ext_stat);
+int		cmds_lstsize(t_cmdl *cmds);
 
 /*
  * copying envp
@@ -158,6 +159,19 @@ void	sig_interactive_ctrl_c(int sig);
 void	sigs_non_interactive_shell(void);
 void	sig_non_interactive_ctrl_c(int sig);
 void	sig_non_interactive_quit(int sig);
+
+/*
+ * execution
+ */
+void	execute_cmds(t_shell *mini, t_cmdl *cmds);
+
+
+/*
+ * builtins
+ */
+int		builtin_checker(char *command);
+void	builtin_executing(t_shell *mini, t_cmdl *cmds);
+int		pwd_executing(void);
 
 // printer
 void	print_env_copy(t_envl *env_copy);

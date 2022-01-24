@@ -19,8 +19,8 @@ int	main(int argc, char **argv, char **envp)
 		sigs_interactive_shell();
 		parser(mini, mini->env_copy);
 		sigs_non_interactive_shell();
-//		if (mini->cmds)
-//			execute_cmds();
+		if (mini->cmds)
+			execute_cmds(mini, mini->cmds);
 		liberator(mini);
 	}
 	printf("\nfrom main\n");

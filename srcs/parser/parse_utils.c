@@ -7,7 +7,7 @@ int	pass_whitespaces(char *input, int it)
 	return (it);
 }
 
-void	heredoc(t_cmd *cmd, char *stop)
+void	heredoc(t_cmdl *cmd, char *stop)
 {
 	char	*line;
 
