@@ -73,6 +73,8 @@ void	cmds_lstdelone(t_cmdl *lst);
 void	envl_destroy(t_envl **lst);
 void	args_destroy(t_argl **lst);
 void	cmds_destroy(t_cmdl **lst);
+void	redir_lstdelone(t_redir *lst);
+void	redir_destroy(t_redir **lst);
 int		print_msg(int ret_val, char *message, int ext_stat);
 int		cmds_lstsize(t_cmdl *cmds);
 

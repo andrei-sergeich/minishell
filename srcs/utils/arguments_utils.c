@@ -1,4 +1,4 @@
-#include "../include/minishell.h"
+#include "minishell.h"
 
 t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 {
@@ -45,4 +45,31 @@ void	args_lstdelnode(t_argl **args)
 	(*args)->arg_origin = NULL;
 	free((*args));
 	*args = next;
+}
+
+void	args_lstdelone(t_argl *lst)
+{
+	if (!lst)
+		return ;
+//	free(lst->arg_as_cleaned);
+//	lst->arg_as_cleaned = NULL;
+	free(lst->arg_origin);
+	lst->arg_origin = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	args_destroy(t_argl **lst)
+{
+	t_argl	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		args_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
 }
