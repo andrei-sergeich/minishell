@@ -124,8 +124,6 @@ void	cmds_lstdelone(t_cmdl *lst)
 	lst = NULL;
 }
 
-
-
 void	envl_destroy(t_envl **lst)
 {
 	t_envl	*tmp;

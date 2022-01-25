@@ -46,29 +46,30 @@ int	opener(char *path, char flag)
 	return (fd);
 }
 
-int	find_file_name(char *input, int *it)
+void	fd_opening(t_cmdl *cmds)
 {
-	int		fd;
-	int		begin;
-	char	*file_name;
+	t_redir	*tmp;
+	int		it;
 
-	printf("input = |%s|\n", input);
-//	(*it)++;
-	*it = pass_whitespaces(input, (*it) + 1);
-	printf("it = %c	%d\n", input[*it], *it);
-	begin = *it;
-	while (input[*it] && /*ft_isprint(input[*it]) && */ input[*it] != ' ')
+	if (cmds == NULL)
+		return ;
+	while (cmds)
 	{
-//		printf("it = %c	%d\n", input[*it], *it);
-		(*it)++;
+		it = 0;
+		tmp = (t_redir *) cmds->redir;
+		while (tmp)
+		{
+//			printf("%d * redirect type - |%s| \t name - |%s|\n", it, tmp->type, tmp->name);
+			if (ft_strcmp("<", tmp->type) == 0)
+				cmds->in = opener(tmp->name, 'I');
+			if (ft_strcmp(">", tmp->type) == 0)
+				cmds->out = opener(tmp->name, 'O');
+			if (ft_strcmp(">>", tmp->type) == 0)
+				cmds->out = opener(tmp->name, 'A');
+			tmp = tmp->next;
+			it++;
+		}
+//		printf("in - |%d| \t out - |%d|\n", cmds->in, cmds->out);
+		cmds = cmds->next;
 	}
-	file_name = ft_substr(input, begin, *it - begin);
-	printf("file_name = |%s|\n", file_name);
-	fd = opener(file_name, 'I');
-	if (fd > 0)
-	{
-		printf("%d\n", fd);
-		return (0);
-	}
-	return (1);
 }

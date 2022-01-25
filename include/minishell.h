@@ -122,6 +122,7 @@ void	split_input(char *input, t_argl **args, t_shell *mini);
 int		find_end(char *input, int it, int *flag);
 void	args_lstadd_back(t_argl	**list, t_argl *new);
 t_argl	*args_lstnew(char *arg_str, t_shell *mini);
+void	args_lstdelnode(t_argl **args);
 void	set_redirect(t_argl *args);
 
 /*
@@ -141,8 +142,10 @@ int		key_checker(char c);
  */
 int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
+void	fd_opening(t_cmdl *cmds);
 
-int		find_file_name(char *input, int *it);
+void	heredoc(t_cmdl *cmd, char *stop);
+
 
 /*
  * processing commands
@@ -150,6 +153,12 @@ int		find_file_name(char *input, int *it);
 t_cmdl	*commands_processing(t_shell *mini);
 void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new);
 t_cmdl	*cmds_lstnew(t_argl *args);
+char	**write_cmd_to_array(t_argl *args, int quantity_lists);
+int		find_full_command(t_argl *args);
+t_redir	*redirect_processing(t_argl **args);
+int		first_redirect(t_argl **args, t_redir **rdr);
+void	redir_lstadd_back(t_redir **list, t_redir *new);
+t_redir	*redir_lstnew(char *type, char *name);
 
 /*
  * signals
