@@ -1,4 +1,50 @@
-#include "../include/minishell.h"
+#include "minishell.h"
+
+void	envl_lstdelone(t_envl *lst)
+{
+	if (!lst)
+		return ;
+	free(lst->line);
+	lst->line = NULL;
+	free(lst->key);
+	lst->key = NULL;
+	free(lst->value);
+	lst->value = NULL;
+	free(lst);
+	lst = NULL;
+}
+
+void	envl_destroy(t_envl **lst)
+{
+	t_envl	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		envl_lstdelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
+}
+
+int	env_copy_lstsize(t_envl *env_copy)
+{
+	int		count;
+//	t_envl	*tmp;
+
+	if (!env_copy)
+		return (-1);
+//	tmp = env_copy;
+	count = 0;
+	while (env_copy)
+	{
+		env_copy = env_copy->next;
+		count++;
+	}
+	return (count);
+}
 
 char	*find_in_env(t_envl *env_copy, char *key)
 {

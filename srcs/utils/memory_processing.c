@@ -29,3 +29,18 @@ void	liberator(t_shell *mini)
 	cmds_destroy(&mini->cmds);
 //	free(mini);
 }
+
+void	array_liberator(char **array)
+{
+	int	it;
+
+	it = 0;
+	while (array[it])
+	{
+		free(array[it]);
+		array[it] = NULL;
+		it++;
+	}
+	free(array);
+	array = NULL;
+}

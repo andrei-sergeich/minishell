@@ -69,3 +69,34 @@ void	print_redir(t_cmdl *cmds)
 		cmds = cmds->next;
 	}
 }
+
+int	print_msg(int ret_val, char *message, int ext_stat)
+{
+//	write(2, "minishell: ", 11);
+//	write(2, message, ft_strlen(message));
+//	write(2, "\n", 1);
+	ft_putstr_fd(BEGIN(49, 32)"[minishell ]$ "CLOSE, STDERR_FILENO);
+	ft_putendl_fd(message, STDERR_FILENO);
+	(void)ext_stat;
+//	g_ext_stat = ext_stat;
+	return (ret_val);
+}
+
+//int	ms_error(char *str)
+void	error_msg(char *message)
+{
+	if (message)
+		ft_putendl_fd(message, STDERR_FILENO);
+	else
+		perror("Error");
+//	g_ext_stat = 128;
+//	return (1);
+}
+
+void	no_such_message(char *message)
+{
+	ft_putstr_fd(BEGIN(49, 32)"[minishell ]$ "CLOSE, STDERR_FILENO);
+	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(strerror(errno), STDERR_FILENO);
+}

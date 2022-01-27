@@ -8,6 +8,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
@@ -67,6 +68,7 @@ typedef struct s_redir
 void	*allocator(size_t size);
 void	liberator(t_shell *mini);
 void	initializator(t_shell *mini);
+void	array_liberator(char **array);
 void	envl_lstdelone(t_envl *lst);
 void	args_lstdelone(t_argl *lst);
 void	cmds_lstdelone(t_cmdl *lst);
@@ -75,8 +77,10 @@ void	args_destroy(t_argl **lst);
 void	cmds_destroy(t_cmdl **lst);
 void	redir_lstdelone(t_redir *lst);
 void	redir_destroy(t_redir **lst);
-int		print_msg(int ret_val, char *message, int ext_stat);
 int		cmds_lstsize(t_cmdl *cmds);
+int		env_copy_lstsize(t_envl *env_copy);
+int		execute_dup2(t_cmdl *cmds);
+
 
 /*
  * copying envp
@@ -175,6 +179,18 @@ void	sig_non_interactive_quit(int sig);
  * execution
  */
 void	execute_cmds(t_shell *mini, t_cmdl *cmds);
+void	execute_child_process(t_shell *mini, t_cmdl *cmds, t_cmdl *begin);
+void	wait_child_processes(t_cmdl *begin);
+void	executing(t_shell *mini, t_cmdl *cmds);
+char	**env_copy_to_array(t_envl *env_copy);
+
+char	*path_processing(t_shell *mini, char *line);
+char	**get_paths(t_shell *mini);
+int		executable_path(char *line);
+
+int		pipe_creator(t_cmdl *cmds);
+int		pipe_creation_error(t_cmdl *cmds);
+
 
 
 /*
@@ -183,11 +199,17 @@ void	execute_cmds(t_shell *mini, t_cmdl *cmds);
 int		builtin_checker(char *command);
 void	builtin_executing(t_shell *mini, t_cmdl *cmds);
 int		pwd_executing(void);
+int		env_executing(t_envl *lst);
+
 
 // printer
 void	print_env_copy(t_envl *env_copy);
 void	print_args(t_argl *args);
 void	print_cmds(t_cmdl *cmds);
 void	print_redir(t_cmdl *cmds);
+
+int		print_msg(int ret_val, char *message, int ext_stat);
+void	no_such_message(char *message);
+void	error_msg(char *message);
 
 #endif
