@@ -60,8 +60,8 @@ void	executing(t_shell *mini, t_cmdl *cmds)
 
 void	execute_child_process(t_shell *mini, t_cmdl *cmds, t_cmdl *begin)
 {
-//	ms_redirects(cmd);
-//	handle heredoc here;
+	fd_opening(cmds);
+	heredoc_processing(cmds);
 	if (execute_dup2(cmds))
 		ft_putendl_fd("dup2 error", 2);
 	while (begin->next)
@@ -99,10 +99,10 @@ void	wait_child_processes(t_cmdl *begin)
 void	execute_cmds(t_shell *mini, t_cmdl *cmds)
 {
 	t_cmdl	*begin;
-	int		cmds_qnt;
+//	int		cmds_qnt;
 
 	begin = cmds;
-	cmds_qnt = cmds_lstsize(cmds);
+//	cmds_qnt = cmds_lstsize(cmds); // maybe delete
 //	if (!cmds->next && !cmds->redir)
 	if (!cmds->next && builtin_checker(cmds->command[0]) && !cmds->redir)
 	{
@@ -111,7 +111,7 @@ void	execute_cmds(t_shell *mini, t_cmdl *cmds)
 	}
 	if (pipe_creator(cmds))
 		return ;
-	while (cmds_qnt--)
+	while (cmds) // maybe replace on while (cmds_qnt--)
 	{
 //		maybe if (cmds->command[0])
 		cmds->pid = fork();

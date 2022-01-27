@@ -149,8 +149,8 @@ int		key_checker(char c);
 int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
 void	fd_opening(t_cmdl *cmds);
-
-void	heredoc(t_cmdl *cmd, char *stop);
+void	heredoc_processing(t_cmdl *cmd);
+void	execute_heredoc(t_cmdl *cmd, char *stop);
 
 
 /*

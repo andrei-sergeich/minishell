@@ -52,6 +52,6 @@ t_cmdl	*commands_processing(t_shell *mini)
 	}
 	cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
 	clean_cmd_and_filename(mini);
-	fd_opening(mini->cmds);
+//	fd_opening(mini->cmds);
 	return (mini->cmds);
 }
