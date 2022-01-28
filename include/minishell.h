@@ -149,8 +149,7 @@ int		key_checker(char c);
 int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
 void	fd_opening(t_cmdl *cmds);
-void	heredoc_processing(t_cmdl *cmd);
-void	execute_heredoc(t_cmdl *cmd, char *stop);
+
 
 
 /*
@@ -191,7 +190,9 @@ int		executable_path(char *line);
 int		pipe_creator(t_cmdl *cmds);
 int		pipe_creation_error(t_cmdl *cmds);
 
-
+int 	heredoc_checking(t_cmdl *cmd);
+void	heredoc_processing(t_cmdl *cmd);
+void	execute_heredoc(t_cmdl *cmd, char *stop);
 
 /*
  * builtins
