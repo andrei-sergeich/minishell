@@ -201,6 +201,23 @@ int		builtin_checker(char *command);
 void	builtin_executing(t_shell *mini, t_cmdl *cmds);
 int		pwd_executing(void);
 int		env_executing(t_envl *lst);
+int		echo_executing(char **arr);
+int		exit_executing(t_shell *mini, char **argv);
+int		arrlen(char **arr);
+int		isdigit_str(char *str);
+int		print_and_exit(t_shell *mini, char *argv1, char *str);
+int		cd_executing(t_shell *mini, char **argv);
+int		change_way(t_shell *mini, char **argv);
+int		change_dir(t_shell *mini, char *path);
+int		new_pwd(t_shell *mini);
+int 	old_pwd(t_shell *mini);
+int		unset_executing(t_shell *mini, char **argv);
+int		find_in_env_ind(t_envl *lst, char *key);
+int		export_executing(t_shell *mini, char **argv);
+int		is_key_exist(t_envl **env, char *key);
+int		print_env_l(t_envl *lst);
+
+
 
 
 // printer

@@ -57,8 +57,8 @@ int	heredoc_checking(t_cmdl *cmd)
 	tmp = (t_redir *) cmd->redir;
 	if (ft_strcmp("<<", tmp->type) == 0)
 	{
-		write(1, "tut", 3);
-		write(1, "\n", 1);
+//		write(1, "tut", 3);
+//		write(1, "\n", 1);
 		return (1);
 	}
 	return (0);

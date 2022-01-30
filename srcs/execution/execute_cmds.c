@@ -61,9 +61,9 @@ void	executing(t_shell *mini, t_cmdl *cmds)
 
 void	execute_child_process(t_shell *mini, t_cmdl *cmds, t_cmdl *begin)
 {
-//	fd_opening(cmds);
-//	if (heredoc_checking(cmds))
-//		heredoc_processing(cmds);
+	fd_opening(cmds);
+	if (heredoc_checking(cmds))
+		heredoc_processing(cmds);
 	if (execute_dup2(cmds))
 		ft_putendl_fd("dup2 error", 2);
 	while (begin->next)
