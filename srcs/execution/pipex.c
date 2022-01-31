@@ -4,7 +4,7 @@ int	pipe_creation_error(t_cmdl *cmds)
 {
 	ft_putstr_fd(BEGIN(49, 32)"[minishell ]$ "CLOSE, STDERR_FILENO);
 	ft_putendl_fd("fork: Resource temporarily unavailable", STDERR_FILENO);
-//	g_ext_stat = 128;
+	g_ext_stat = 128;
 	while (cmds->next)
 	{
 		if (!cmds->pipe_fd[0] || !cmds->pipe_fd[1])

@@ -77,8 +77,8 @@ int	print_msg(int ret_val, char *message, int ext_stat)
 //	write(2, "\n", 1);
 	ft_putstr_fd(BEGIN(49, 32)"[minishell ]$ "CLOSE, STDERR_FILENO);
 	ft_putendl_fd(message, STDERR_FILENO);
-	(void)ext_stat;
-//	g_ext_stat = ext_stat;
+//	(void)ext_stat;
+	g_ext_stat = ext_stat;
 	return (ret_val);
 }
 
@@ -89,7 +89,7 @@ void	error_msg(char *message)
 		ft_putendl_fd(message, STDERR_FILENO);
 	else
 		perror("Error");
-//	g_ext_stat = 128;
+	g_ext_stat = 128;
 //	return (1);
 }
 

@@ -14,8 +14,8 @@ void	parser(t_shell *mini, t_envl *env_copy)
 //	mini->input = ft_strdup("cat <1 | ls -la");
 //	printf("\nmini->input = %s\n\n", mini->input);
 	if (!mini->input)
-		exit(0);
-//		exit(g_ext_stat);
+//		exit(0);
+		exit(g_ext_stat);
 	if (*mini->input)					/* If the line has any text in it, */
 		add_history (mini->input);		/* save it on the history. */
 	if (validator(mini->input) == 0)

@@ -9,14 +9,14 @@ void	sig_non_interactive_quit(int sig)
 	ft_putendl_fd(nbr, STDERR_FILENO);
 	free(nbr);
 	nbr = NULL;
-//	g_ext_stat = 131;
+	g_ext_stat = 131;
 }
 
 void	sig_non_interactive_ctrl_c(int sig)
 {
 	(void)sig;
 	ft_putstr_fd("\n", STDERR_FILENO);
-//	g_ext_stat = 130;
+	g_ext_stat = 130;
 }
 
 void	sigs_non_interactive_shell(void)

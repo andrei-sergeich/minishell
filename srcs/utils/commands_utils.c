@@ -54,7 +54,7 @@ void	cmds_lstdelone(t_cmdl *lst)
 	while (lst->command[it])
 	{
 		if (lst->command == NULL)
-			break;
+			break ;
 		free(lst->command[it]);
 		lst->command[it] = NULL;
 		it++;

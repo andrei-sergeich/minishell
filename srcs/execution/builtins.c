@@ -3,22 +3,22 @@
 void	builtin_executing(t_shell *mini, t_cmdl *cmds)
 {
 	if (!ft_strcmp(cmds->command[0], "cd"))
-		cd_executing(mini, cmds->command);
-//		g_ext_stat = cd_executing(mini, cmds->command);
+//		cd_executing(mini, cmds->command);
+		g_ext_stat = cd_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "echo"))
-		echo_executing(cmds->command);
-//		g_ext_stat = echo_executing(cmds->command);
+//		echo_executing(cmds->command);
+		g_ext_stat = echo_executing(cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "env"))
-		env_executing(mini->env_copy);
-//		g_ext_stat = env_executing(mini->env_copy);
+//		env_executing(mini->env_copy);
+		g_ext_stat = env_executing(mini->env_copy);
 	else if (!ft_strcmp(cmds->command[0], "exit"))
-		exit_executing(mini, cmds->command);
-//		g_ext_stat = exit_executing(mini, cmds->command);
+//		exit_executing(mini, cmds->command);
+		g_ext_stat = exit_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "export"))
 		g_ext_stat = export_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "pwd"))
-		pwd_executing();
-//		g_ext_stat = pwd_executing();
+//		pwd_executing();
+		g_ext_stat = pwd_executing();
 	else if (!ft_strcmp(cmds->command[0], "unset"))
 		g_ext_stat = unset_executing(mini, cmds->command);
 }

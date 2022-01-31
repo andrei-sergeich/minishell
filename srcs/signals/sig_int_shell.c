@@ -7,7 +7,7 @@ void	sig_interactive_ctrl_c(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-//	g_ext_stat = 1;
+	g_ext_stat = 1;
 }
 
 void	sigs_interactive_shell(void)

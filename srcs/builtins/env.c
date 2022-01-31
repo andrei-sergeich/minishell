@@ -11,7 +11,6 @@ int	env_executing(t_envl *lst)
 			ft_putstr_fd(lst->key, STDOUT_FILENO);
 			ft_putstr_fd("=", STDOUT_FILENO);
 			ft_putendl_fd(lst->value, STDOUT_FILENO);
-//			ft_putchar_fd('\n', STDOUT_FILENO);
 		}
 		lst = lst->next;
 	}

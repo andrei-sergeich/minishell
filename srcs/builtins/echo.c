@@ -2,8 +2,8 @@
 
 int	echo_executing(char **arr)
 {
-	int flag;
-	int i;
+	int	flag;
+	int	i;
 
 	flag = 1;
 	i = 1;
@@ -13,12 +13,12 @@ int	echo_executing(char **arr)
 		{
 			flag = 0;
 			i++;
-			continue;
+			continue ;
 		}
 		ft_putstr_fd(arr[i], STDOUT_FILENO);
 		i++;
 		if (arr[i] == NULL)
-			break;
+			break ;
 		else
 			ft_putstr_fd(" ", STDOUT_FILENO);
 	}

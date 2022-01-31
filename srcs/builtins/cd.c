@@ -12,10 +12,10 @@
 
 #include "../../include/minishell.h"
 
-static char *ft_find_home(t_envl **lst)
+static char	*ft_find_home(t_envl **lst)
 {
 	t_envl	*tmp;
-	char 	*cp_value;
+	char	*cp_value;
 
 	cp_value = NULL;
 	if (lst && (*lst))
@@ -34,7 +34,7 @@ static char *ft_find_home(t_envl **lst)
 	return (NULL);
 }
 
-static int ft_not_set(void)
+static int	ft_not_set(void)
 {
 	ft_putstr_fd(BEGIN(49, 32)"minishell: "CLOSE, STDERR_FILENO);
 	ft_putendl_fd("cd :  HOME not set", STDERR_FILENO);
@@ -43,7 +43,7 @@ static int ft_not_set(void)
 
 int	change_dir(t_shell *mini, char *path)
 {
-	char *oldpwd;
+	char	*oldpwd;
 
 	oldpwd = getcwd(NULL, 1024);
 	if (!oldpwd)
@@ -68,7 +68,7 @@ int	change_dir(t_shell *mini, char *path)
 
 int	change_way(t_shell *mini, char **argv)
 {
-	char *cd[2];
+	char	*cd[2];
 
 	if (argv[1][0] == '-')
 		return (old_pwd(mini));
@@ -83,8 +83,8 @@ int	change_way(t_shell *mini, char **argv)
 
 int	cd_executing(t_shell *mini, char **argv)
 {
-	char *home;
-	int 	res;
+	char	*home;
+	int		res;
 
 	home = NULL;
 	if (arrlen(argv) > 1)

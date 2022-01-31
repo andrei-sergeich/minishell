@@ -7,7 +7,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <errno.h>
+# include <sys/errno.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -17,7 +17,7 @@
 #define BOLD		"\001\033[1m\002"			// Подчеркнуть, жирным шрифтом, выделить
 #define BEGIN(x,y)	"\001\033["#x";"#y"m\002"	// x: background, y: foreground
 
-//int		g_ext_stat;
+int		g_ext_stat;
 
 typedef struct s_shell
 {

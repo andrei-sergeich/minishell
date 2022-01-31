@@ -12,10 +12,10 @@
 
 #include "../../include/minishell.h"
 
-int old_pwd(t_shell *mini)
+int	old_pwd(t_shell *mini)
 {
-	char *value;
-	
+	char	*value;
+
 	value = find_in_env(mini->env_copy, "OLDPWD");
 	if (!value)
 	{
@@ -32,7 +32,7 @@ int old_pwd(t_shell *mini)
 
 int	new_pwd(t_shell *mini)
 {
-	char *pwd;
+	char	*pwd;
 
 	pwd = getcwd(NULL, 1024);
 	if (!pwd)

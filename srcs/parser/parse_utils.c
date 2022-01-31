@@ -20,12 +20,12 @@ int	opener(char *path, char flag)
 		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
 	{
-//		print_msg(1, strerror(errno), 258);
-		exit(errno);
+		print_msg(1, strerror(errno), 1);
+//		exit(errno);
 
-//		g_ext_stat = 1;
+		g_ext_stat = 1;
 //		perror("Error");
-//		exit(g_ext_stat);
+		exit(g_ext_stat);
 	}
 	return (fd);
 }

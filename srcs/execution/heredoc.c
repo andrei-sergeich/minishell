@@ -18,8 +18,8 @@ void	execute_heredoc(t_cmdl *cmd, char *stop)
 
 void	heredoc_processing(t_cmdl *cmd)
 {
-	int	fd[2];
-	int	pid;
+	int		fd[2];
+	int		pid;
 	t_redir	*tmp;
 
 	tmp = (t_redir *) cmd->redir;
@@ -28,8 +28,8 @@ void	heredoc_processing(t_cmdl *cmd)
 		if (pipe(fd) < 0)
 		{
 			perror("Error");
-//		g_ext_stat = 1;
-//		exit (g_ext_stat);
+			g_ext_stat = 1;
+			exit (g_ext_stat);
 		}
 		pid = fork();
 		if (pid == 0)
@@ -50,7 +50,7 @@ void	heredoc_processing(t_cmdl *cmd)
 
 int	heredoc_checking(t_cmdl *cmd)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	if (!cmd->redir)
 		return (0);

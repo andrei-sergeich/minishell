@@ -36,8 +36,8 @@ void	executing(t_shell *mini, t_cmdl *cmds)
 	{
 		builtin_executing(mini, cmds);
 		if (cmds->fork)
-			exit (0);
-//			exit (g_ext_stat);
+//			exit (0);
+			exit (g_ext_stat);
 		return ;
 	}
 	else
@@ -91,9 +91,9 @@ void	wait_child_processes(t_cmdl *begin)
 	while (cmd)
 	{
 		waitpid(cmd->pid, &status, 0);
-//		g_ext_stat = WEXITSTATUS(status);
-//		if (!g_ext_stat && WIFSIGNALED(status))
-//			g_ext_stat = 128 + WTERMSIG(status);
+		g_ext_stat = WEXITSTATUS(status);
+		if (!g_ext_stat && WIFSIGNALED(status))
+			g_ext_stat = 128 + WTERMSIG(status);
 		cmd = cmd->next;
 	}
 }

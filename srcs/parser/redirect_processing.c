@@ -36,7 +36,8 @@ int	first_redirect(t_argl **args, t_redir **rdr)
 	{
 		if ((*args)->redirect == 1)
 		{
-			redir_lstadd_back(rdr, redir_lstnew((*args)->arg_origin, (*args)->next->arg_origin));
+			redir_lstadd_back(rdr, redir_lstnew((*args)->arg_origin, \
+			(*args)->next->arg_origin));
 			if (!(*args)->next->next)
 			{
 				(*args) = (*args)->next->next;
@@ -61,14 +62,14 @@ t_redir	*redirect_processing(t_argl **args)
 	if (first_redirect(args, &rdr) == 1)
 		return (rdr);
 	tmp = *args;
-//	printf("*%p*\n", tmp);
 	while (tmp->next)
 	{
 		if (ft_strcmp(tmp->arg_origin, "|") == 0)
 			break ;
 		if (tmp->next->redirect == 1)
 		{
-			redir_lstadd_back(&rdr, redir_lstnew(tmp->next->arg_origin, tmp->next->next->arg_origin));
+			redir_lstadd_back(&rdr, redir_lstnew(tmp->next->arg_origin, \
+			tmp->next->next->arg_origin));
 			args_lstdelnode(&tmp->next);
 			args_lstdelnode(&tmp->next);
 		}

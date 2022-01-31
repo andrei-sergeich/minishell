@@ -21,7 +21,8 @@ int	read_redirect(char *input, int *it)
 {
 	(*it)++;
 	if (input[*it] == '\0' || input[*it] == '>')
-		return (print_msg(1, "syntax error near unexpected token `newline'", 258));
+		return (print_msg(1, "syntax error near unexpected token `newline'", \
+		258));
 	if (input[*it] == '|')
 		return (print_msg(1, "syntax error near unexpected token `|'", 258));
 	if (input[*it] == '<')
@@ -37,7 +38,8 @@ int	write_redirect(char *input, int *it)
 {
 	(*it)++;
 	if (input[*it] == '\0' || input[*it] == '|')
-		return (print_msg(1, "syntax error near unexpected token `newline'", 258));
+		return (print_msg(1, "syntax error near unexpected token `newline'", \
+		258));
 	if (input[*it] == '<')
 		return (print_msg(1, "syntax error near unexpected token `<'", 258));
 	if (input[*it] == '>')

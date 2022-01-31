@@ -43,10 +43,8 @@ t_cmdl	*commands_processing(t_shell *mini)
 	{
 		if ((ft_strcmp(tmp->arg_origin, "|")) == 0)
 		{
-//			printf("**\nfrom commands_processing\n%s\n**", tmp->arg_origin);
 			cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
 			cmd_begin = tmp->next;
-//			printf("%s\n", cmd_begin->arg_origin);
 		}
 		tmp = tmp->next;
 	}

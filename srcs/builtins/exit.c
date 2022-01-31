@@ -26,7 +26,7 @@ int	arrlen(char **arr)
 
 int	isdigit_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -54,12 +54,11 @@ int	print_and_exit(t_shell *mini, char *argv1, char *str)
 	if (argv1 != NULL)
 	{
 		shlvl_down(mini);
-//		g_ext_stat = 255;
+		g_ext_stat = 255;
 		exit(255);
 	}
 	else
 		return (1);
-	return (0);
 }
 
 static unsigned char	atoi_char(t_shell *mini, char *str)
@@ -99,8 +98,8 @@ int	exit_executing(t_shell *mini, char **argv)
 	if (len == 1)
 	{
 		shlvl_down(mini);
-//		exit(g_ext_stat);
-		exit(0);
+		exit(g_ext_stat);
+//		exit(0);
 	}
 	if (isdigit_str(argv[1]))
 		return (print_and_exit(mini, argv[1], "numeric argument required"));
@@ -108,10 +107,10 @@ int	exit_executing(t_shell *mini, char **argv)
 		return (print_and_exit(mini, NULL, "too many arguments"));
 	if (len == 2)
 	{
-//		g_ext_stat = atoi_char(mini, argv[1]);
+		g_ext_stat = atoi_char(mini, argv[1]);
 		shlvl_down(mini);
-//		exit(g_ext_stat);
-		exit(0);
+		exit(g_ext_stat);
+//		exit(0);
 	}
 	return (0);
 }
