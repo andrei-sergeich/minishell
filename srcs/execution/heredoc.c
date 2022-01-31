@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:05:35 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:05:36 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	execute_heredoc(t_cmdl *cmd, char *stop)
@@ -56,10 +68,6 @@ int	heredoc_checking(t_cmdl *cmd)
 		return (0);
 	tmp = (t_redir *) cmd->redir;
 	if (ft_strcmp("<<", tmp->type) == 0)
-	{
-//		write(1, "tut", 3);
-//		write(1, "\n", 1);
 		return (1);
-	}
 	return (0);
 }

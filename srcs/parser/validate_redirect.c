@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_redirect.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:12:31 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:17:41 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	last_check(char *input, int *it)
@@ -57,6 +69,6 @@ int	counting_redirect(char *input, int *it, char redirect)
 		return (1);
 	if (redirect == '<' && read_redirect(input, it))
 		return (1);
-	(*it)--;			// добавлено на случай ls >'1'
+	(*it)--;			//добавлено на случай ls >'1'
 	return (0);
 }

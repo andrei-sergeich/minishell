@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_processing.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:08:05 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:08:06 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	clean_cmd_and_filename(t_shell *mini)
@@ -50,6 +62,5 @@ t_cmdl	*commands_processing(t_shell *mini)
 	}
 	cmds_lstadd_back(&mini->cmds, cmds_lstnew(cmd_begin));
 	clean_cmd_and_filename(mini);
-//	fd_opening(mini->cmds);
 	return (mini->cmds);
 }

@@ -1,4 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:15:19 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:15:28 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/minishell.h"
 
 void	envl_lstdelone(t_envl *lst)
 {
@@ -32,11 +44,9 @@ void	envl_destroy(t_envl **lst)
 int	env_copy_lstsize(t_envl *env_copy)
 {
 	int		count;
-//	t_envl	*tmp;
 
 	if (!env_copy)
 		return (-1);
-//	tmp = env_copy;
 	count = 0;
 	while (env_copy)
 	{

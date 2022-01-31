@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   memory_processing.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:15:53 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:15:54 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	*allocator(size_t size)
@@ -23,11 +35,8 @@ void	initializator(t_shell *mini)
 
 void	liberator(t_shell *mini)
 {
-//	envl_destroy(&mini->env_copy);
 	args_destroy(&mini->args);
-//	redir_destroy(&mini->cmds->redir);
 	cmds_destroy(&mini->cmds);
-//	free(mini);
 }
 
 void	array_liberator(char **array)

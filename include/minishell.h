@@ -29,7 +29,7 @@ typedef struct s_shell
 
 typedef struct s_envl
 {
-	char			*line; // maybe delete
+	char			*line;
 	char			*key;
 	char			*value;
 	struct s_envl	*next;
@@ -37,7 +37,6 @@ typedef struct s_envl
 
 typedef struct s_argl
 {
-//	char			*arg_cleaned;
 	char			*arg_origin;
 	int				redirect;
 	struct s_argl	*next;
@@ -150,8 +149,6 @@ int		pass_whitespaces(char *input, int it);
 int		opener(char *path, char flag);
 void	fd_opening(t_cmdl *cmds);
 
-
-
 /*
  * processing commands
  */
@@ -217,15 +214,13 @@ int		export_executing(t_shell *mini, char **argv);
 int		is_key_exist(t_envl **env, char *key);
 int		print_env_l(t_envl *lst);
 
-
-
-
-// printer
+/*
+ * printer
+ */
 void	print_env_copy(t_envl *env_copy);
 void	print_args(t_argl *args);
 void	print_cmds(t_cmdl *cmds);
 void	print_redir(t_cmdl *cmds);
-
 int		print_msg(int ret_val, char *message, int ext_stat);
 void	no_such_message(char *message);
 void	error_msg(char *message);

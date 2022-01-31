@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   copying_envp.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:09:14 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:09:15 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	*copy_value(char *env_part)
@@ -49,7 +61,7 @@ void	envl_lstadd_back(t_envl	**list, t_envl *new)
 	t_envl	*last;
 
 	if (!list || !new)
-		exit(EXIT_FAILURE); 			/* or return */
+		exit(EXIT_FAILURE);
 	if (*list)
 	{
 		last = *list;

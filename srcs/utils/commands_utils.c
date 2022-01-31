@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:14:54 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:14:55 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	cmds_lstsize(t_cmdl *cmds)
@@ -9,7 +21,6 @@ int	cmds_lstsize(t_cmdl *cmds)
 	count = 0;
 	while (cmds)
 	{
-//		maybe if (cmds->command[0])
 		cmds = cmds->next;
 		count++;
 	}

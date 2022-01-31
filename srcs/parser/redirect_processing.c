@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_processing.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:12:10 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:12:11 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	redir_lstadd_back(t_redir **list, t_redir *new)
@@ -5,7 +17,7 @@ void	redir_lstadd_back(t_redir **list, t_redir *new)
 	t_redir	*last;
 
 	if (!list || !new)
-		exit(EXIT_FAILURE); 			/* or return */
+		exit(EXIT_FAILURE);
 	if (*list)
 	{
 		last = *list;

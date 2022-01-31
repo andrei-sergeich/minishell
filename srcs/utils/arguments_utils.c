@@ -1,4 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arguments_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:13:42 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:14:00 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/minishell.h"
 
 t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 {
@@ -8,8 +20,6 @@ t_argl	*args_lstnew(char *arg_str, t_shell *mini)
 	element = (t_argl *)malloc(sizeof(t_argl));
 	if (!element)
 		return (NULL);
-//	element->arg_cleaned = ft_strdup(arg_str);
-//	element->arg_origin = postparser(arg_str, mini->env_copy);
 	element->arg_origin = ft_strdup(arg_str);
 	element->redirect = 0;
 	element->next = NULL;
@@ -22,7 +32,7 @@ void	args_lstadd_back(t_argl	**list, t_argl *new)
 	t_argl	*last;
 
 	if (!list || !new)
-		exit(EXIT_FAILURE); 			/* or return */
+		exit(EXIT_FAILURE);
 	if (*list)
 	{
 		last = *list;
@@ -51,8 +61,6 @@ void	args_lstdelone(t_argl *lst)
 {
 	if (!lst)
 		return ;
-//	free(lst->arg_as_cleaned);
-//	lst->arg_as_cleaned = NULL;
 	free(lst->arg_origin);
 	lst->arg_origin = NULL;
 	free(lst);

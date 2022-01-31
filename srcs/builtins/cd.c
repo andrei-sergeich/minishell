@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taredfor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 00:04:29 by taredfor          #+#    #+#             */
-/*   Updated: 2022/01/28 23:08:01 by taredfor         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:58:53 by cmero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	change_dir(t_shell *mini, char *path)
 	oldpwd = getcwd(NULL, 1024);
 	if (!oldpwd)
 		oldpwd = ft_strdup(find_in_env(mini->env_copy, "HOME"));
-	change_value_in_env_copy(mini->env_copy,"OLDPWD", oldpwd);
+	change_value_in_env_copy(mini->env_copy, "OLDPWD", oldpwd);
 	if (chdir(path))
 	{
 		ft_putstr_fd(BEGIN(49, 32)"minishell: "CLOSE, STDERR_FILENO);

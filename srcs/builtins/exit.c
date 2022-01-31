@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mc_exit.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taredfor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 23:10:03 by taredfor          #+#    #+#             */
-/*   Updated: 2022/01/28 23:58:52 by taredfor         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:59:53 by cmero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	exit_executing(t_shell *mini, char **argv)
 	{
 		shlvl_down(mini);
 		exit(g_ext_stat);
-//		exit(0);
 	}
 	if (isdigit_str(argv[1]))
 		return (print_and_exit(mini, argv[1], "numeric argument required"));
@@ -110,7 +109,6 @@ int	exit_executing(t_shell *mini, char **argv)
 		g_ext_stat = atoi_char(mini, argv[1]);
 		shlvl_down(mini);
 		exit(g_ext_stat);
-//		exit(0);
 	}
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printer.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:16:59 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:17:18 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	print_env_copy(t_envl *env_copy)
@@ -35,12 +47,11 @@ void	print_cmds(t_cmdl *cmds)
 		it = 0;
 		while (cmds->command[it])
 		{
-			printf("cmds command[%d] - |%s|\t in - |%d|\t out - |%d|\n", it, cmds->command[it], cmds->in, cmds->out);
+			printf("cmds command[%d] - |%s|\t in - |%d|\t out - |%d|\n", \
+					it, cmds->command[it], cmds->in, cmds->out);
 			it++;
 		}
 		tmp = (t_redir *) cmds->redir;
-//		if (tmp == NULL)
-//			break;
 		while (tmp)
 		{
 			printf("redirect type - |%s| \t name - |%s|\n", tmp->type, tmp->name);
@@ -72,9 +83,6 @@ void	print_redir(t_cmdl *cmds)
 
 int	print_msg(int ret_val, char *message, int ext_stat)
 {
-//	write(2, "minishell: ", 11);
-//	write(2, message, ft_strlen(message));
-//	write(2, "\n", 1);
 	ft_putstr_fd(BEGIN(49, 32)"[minishell ]$ "CLOSE, STDERR_FILENO);
 	ft_putendl_fd(message, STDERR_FILENO);
 //	(void)ext_stat;
@@ -82,7 +90,6 @@ int	print_msg(int ret_val, char *message, int ext_stat)
 	return (ret_val);
 }
 
-//int	ms_error(char *str)
 void	error_msg(char *message)
 {
 	if (message)
@@ -90,7 +97,6 @@ void	error_msg(char *message)
 	else
 		perror("Error");
 	g_ext_stat = 128;
-//	return (1);
 }
 
 void	no_such_message(char *message)

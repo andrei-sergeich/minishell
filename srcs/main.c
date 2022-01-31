@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 18:55:43 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 18:58:01 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	main(int argc, char **argv, char **envp)
@@ -21,12 +33,6 @@ int	main(int argc, char **argv, char **envp)
 			execute_cmds(mini, mini->cmds);
 		liberator(mini);
 	}
-	printf("\nfrom main\n");
-	print_cmds(mini->cmds);
-//	print_redir(mini->cmds);
-	print_args(mini->args);
-//	print_env_copy(mini->env_copy);
 	liberator(mini);
-//	while (1);
 	return (0);
 }

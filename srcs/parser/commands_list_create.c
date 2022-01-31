@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands_list_create.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:07:23 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:07:24 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	find_full_command(t_argl *args)
@@ -13,18 +25,9 @@ int	find_full_command(t_argl *args)
 		return (0);
 	while (tmp->next)
 	{
-//		printf("tmp->arg_pure is - %s\n", tmp->arg_origin);
-//		if (ft_strcmp(tmp->arg_origin, "|") == 0)
-//		{
-//			it = 0;
-//			printf("i is - %d\n", it);
-//			break ;
-//		}
 		tmp = tmp->next;
 		if (ft_strcmp(tmp->arg_origin, "|") == 0)
 			return (quantity);
-//		if (tmp->redirect == 0)
-//			it++;
 		quantity++;
 	}
 	return (quantity);
@@ -76,7 +79,7 @@ void	cmds_lstadd_back(t_cmdl	**list, t_cmdl *new)
 	t_cmdl	*last;
 
 	if (!list || !new)
-		exit(EXIT_FAILURE); 			/* or return */
+		exit(EXIT_FAILURE);
 	if (*list)
 	{
 		last = *list;

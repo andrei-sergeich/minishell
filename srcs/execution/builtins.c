@@ -1,23 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:01:15 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:01:16 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	builtin_executing(t_shell *mini, t_cmdl *cmds)
 {
 	if (!ft_strcmp(cmds->command[0], "cd"))
-//		cd_executing(mini, cmds->command);
 		g_ext_stat = cd_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "echo"))
-//		echo_executing(cmds->command);
 		g_ext_stat = echo_executing(cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "env"))
-//		env_executing(mini->env_copy);
 		g_ext_stat = env_executing(mini->env_copy);
 	else if (!ft_strcmp(cmds->command[0], "exit"))
-//		exit_executing(mini, cmds->command);
 		g_ext_stat = exit_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "export"))
 		g_ext_stat = export_executing(mini, cmds->command);
 	else if (!ft_strcmp(cmds->command[0], "pwd"))
-//		pwd_executing();
 		g_ext_stat = pwd_executing();
 	else if (!ft_strcmp(cmds->command[0], "unset"))
 		g_ext_stat = unset_executing(mini, cmds->command);

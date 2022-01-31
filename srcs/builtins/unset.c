@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taredfor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 00:01:05 by taredfor          #+#    #+#             */
-/*   Updated: 2022/01/29 00:03:24 by taredfor         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:00:46 by cmero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-//static void	free_lst(t_envl	*lst)
-//{
-//	free(lst->value);
-//	free(lst->key);
-//	free(lst->line);
-//	free(lst);
-//}
 
 static void	del_elem(t_envl **head)
 {
@@ -26,7 +18,6 @@ static void	del_elem(t_envl **head)
 
 	for_del = (*head)->next;
 	(*head)->next = (*head)->next->next;
-//	free_lst(for_del);
 	envl_lstdelone(for_del);
 }
 
@@ -43,7 +34,6 @@ static void	del_nth(t_envl **head, int n)
 	{
 		prev = (*head);
 		(*head) = (*head)->next;
-//		free_lst(prev);
 		envl_lstdelone(prev);
 	}
 	else if (n >= 0)

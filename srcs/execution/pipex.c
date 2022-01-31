@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:06:04 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:06:05 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	pipe_creation_error(t_cmdl *cmds)
@@ -27,10 +39,6 @@ int	pipe_creator(t_cmdl *cmds)
 			return (pipe_creation_error(begin));
 		cmds->out = cmds->pipe_fd[1];
 		cmds->next->in = cmds->pipe_fd[0];
-//		if (cmds->out != 1)
-//			cmds->out = cmds->pipe_fd[1];
-//		if (cmds->next->in != 0)
-//			cmds->next->in = cmds->pipe_fd[0];
 		cmds = cmds->next;
 	}
 	return (0);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arguments_processing.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:06:57 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:06:58 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	find_end(char *input, int it, int *flag)
@@ -48,7 +60,6 @@ void	split_input(char *input, t_argl **args, t_shell *mini)
 		it = pass_whitespaces(input, it); // строка 22 переставлена сюда, чтобы в аргумент не записывались пробелы
 		if (flag != 0)
 		{
-//			many_cmds();
 			tmp = ft_substr(input, begin, end - begin);
 			if (ft_strcmp(tmp, "\0"))
 				args_lstadd_back(args, args_lstnew(tmp, mini));

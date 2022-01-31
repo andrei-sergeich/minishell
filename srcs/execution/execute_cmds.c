@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_cmds.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmero <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/31 19:04:05 by cmero             #+#    #+#             */
+/*   Updated: 2022/01/31 19:04:06 by cmero            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	**env_copy_to_array(t_envl *env_copy)
@@ -5,11 +17,9 @@ char	**env_copy_to_array(t_envl *env_copy)
 	int		row_count;
 	int		i;
 	char	**env_arr;
-//	t_envl	*tmp;
 
 	if (env_copy == NULL)
 		return (NULL);
-//	tmp = envp_l;
 	row_count = env_copy_lstsize(env_copy);
 	env_arr = (char **)malloc(sizeof(char *) * (row_count + 1));
 	if (!env_arr)
@@ -36,7 +46,6 @@ void	executing(t_shell *mini, t_cmdl *cmds)
 	{
 		builtin_executing(mini, cmds);
 		if (cmds->fork)
-//			exit (0);
 			exit (g_ext_stat);
 		return ;
 	}
@@ -101,11 +110,8 @@ void	wait_child_processes(t_cmdl *begin)
 void	execute_cmds(t_shell *mini, t_cmdl *cmds)
 {
 	t_cmdl	*begin;
-//	int		cmds_qnt;
 
 	begin = cmds;
-//	cmds_qnt = cmds_lstsize(cmds); // maybe delete
-//	if (!cmds->next && !cmds->redir)
 	if (!cmds->next && builtin_checker(cmds->command[0]) && !cmds->redir)
 	{
 		executing(mini, cmds);
@@ -113,9 +119,8 @@ void	execute_cmds(t_shell *mini, t_cmdl *cmds)
 	}
 	if (pipe_creator(cmds))
 		return ;
-	while (cmds) // maybe replace on while (cmds_qnt--)
+	while (cmds)
 	{
-//		maybe if (cmds->command[0])
 		cmds->pid = fork();
 		cmds->fork = 1;
 		if (cmds->pid < 0)
@@ -125,5 +130,4 @@ void	execute_cmds(t_shell *mini, t_cmdl *cmds)
 		cmds = cmds->next;
 	}
 	wait_child_processes(begin);
-//	return (0);
 }
